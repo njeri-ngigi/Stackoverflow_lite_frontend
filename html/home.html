@@ -1,0 +1,180 @@
+<!DOCTYPE>
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type="text/css" href="../css/home.css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <script src="../js/home.js"></script>
+            <title>Stackoverflow-lite Home</title>
+        </head>
+        <body>
+            <div class="body"></div>
+            <div class="header">
+                <div>STACKOVERFLOW |
+                    <span>Lite</span>
+                </div>
+                <h3><a  href="profile.html">YOUR PROFILE</a><span><a href="signup.html">LOG OUT</a></span></h3>
+                
+            </div>
+            <div class="main">
+                <div class="question_card" id="top_question">
+                    <h2 onclick="showAddComment('postQuestion')">Post a question</h2>
+                    <div id="postQuestion">
+                        <input type="text" placeholder="Question Title"><br><br>
+                        <input type="text" placeholder="Question Content"><br><br>
+                        <input type="button" value="Post Question" onclick="hideAddComment('postQuestion')">
+                    
+                    </div>
+                </div>
+                <div class="question_card">
+                    <h2><u>Question Title</u></h2>
+                    <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea.
+                        Would you take use concrete to make the tunnel or would it be more prudent to use a PVC pipe through the water?
+                    </p>
+                    <i class="material-icons" title="View answers" onclick="displayComments('answers1')"> forum </i> 
+                    <span> 3 </span>
+                    <span class="add" title="Answer this question" onclick="showAddComment('add1')">&#xff0b;</span>
+                    <span class="date">13:00:56 4<sup>th</sup>-Aug-2018</span>
+                    <div class="add_comment_card" id="add1">
+                        <input type="text" placeholder="Answer this question ..."><br><br>
+                        <input type="button" value="Add" onclick="hideAddComment('add1')">
+                    </div>
+
+                    <div id="answers1" class="answers">
+                        <div class="answer_card">
+                            <h4><u>@jay</u></h4>
+                            <p>
+                                No. Wouldn't you rather just take a ship across the sea? That sounds way more reasonable.
+                            </p>
+                            <i class="material-icons"> forum </i>
+                            <span>1</span>
+                            <span class="votes">&#8607;</span>
+                            <span>4</span>
+                            <span class="votes">&#8609;</span>
+                            <span>7</span>
+
+                            <div class="comment_card">
+                                <h4><u>@quick_brains</u></h4>
+                                <p>
+                                    I think she meant running wires like optic fibre
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="answer_card">
+                            <h4>
+                                <u>@lucy-o</u>
+                            </h4>
+                            <p>
+                                Take a flight. Its faster.
+                            </p>
+                            <i class="material-icons"> forum </i>
+                            <span>0</span>
+                            <span class="votes">&#8607;</span>
+                            <span>1</span>
+                            <span class="votes">&#8609;</span>
+                            <span>0</span>
+                        </div>
+                        <div class="answer_card">
+                            <h4>
+                                <u>@karen</u>
+                            </h4>
+                            <p>
+                                You could just not do that
+                            </p>
+                            <i class="material-icons"> forum </i>
+                            <span>0</span>
+                            <span class="votes">&#8607;</span>
+                            <span>0</span>
+                            <span class="votes">&#8609;</span>
+                            <span>0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question_card">
+                    <h2>
+                        <u>Question2 Title</u>
+                    </h2>
+                    <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea. Would you take use concrete
+                        to make the tunnel or would it be more prudent to use a PVC pipe through the water?
+                    </p>
+                    <i class="material-icons" title="View answers" onclick="displayComments('answers2')"> forum </i>
+                    <span>0</span>
+                    <span class="add" title="Answer this question" onclick="showAddComment('add2')">&#xff0b;</span>
+                    <span class="date">01:44:12 24
+                        <sup>th</sup>-July-2018</span>
+
+                    <div class="add_comment_card" id="add2">
+                        <input type="text" placeholder="Answer this question ..."><br><br>
+                        <input type="button" value="Add" onclick="hideAddComment('add2')">
+                    </div>
+
+                    <div class="answers" id="answers2"></div>
+                    
+                </div>
+
+                <div class="question_card">
+                    <h2>
+                        <u>Question3 Title</u>
+                    </h2>
+                    <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea. Would you take use concrete
+                        to make the tunnel or would it be more prudent to use a PVC pipe through the water?
+                    </p>
+                    <i class="material-icons" title="View answers" onclick="displayComments('answers3')"> forum </i>
+                    <span>2</span>
+                    <span class="add" title="Answer this question" onclick="showAddComment('add3')">&#xff0b;</span>
+                    <span class="date">22:16:09 12
+                        <sup>th</sup>-July-2018</span>
+
+                    <div class="add_comment_card" id="add3">
+                        <input type="text" placeholder="Answer this question ..."><br><br>
+                        <input type="button" value="Add" onclick="hideAddComment('add3')">
+                    </div>
+
+                    <div class="answers" id="answers3">
+                        <div class="answer_card">
+                            <h4>
+                                <u>@jay</u>
+                            </h4>
+                            <p>
+                                No. Wouldn't you rather just take a ship across the sea? That sounds way more reasonable.
+                            </p>
+                            <i class="material-icons"> forum </i>
+                            <span>1</span>
+                            <span class="votes">&#8607;</span>
+                            <span>4</span>
+                            <span class="votes">&#8609;</span>
+                            <span>7</span>
+                
+                            <div class="comment_card">
+                                <h4>
+                                    <u>@quick_brains</u>
+                                </h4>
+                                <p>
+                                    I think she meant running wires like optic fibre
+                                </p>
+                            </div>
+                        </div>
+                
+                        <div class="answer_card">
+                            <h4>
+                                <u>@karen</u>
+                            </h4>
+                            <p>
+                                You could just not do that
+                            </p>
+                            <i class="material-icons"> forum </i>
+                            <span>0</span>
+                            <span class="votes">&#8607;</span>
+                            <span>0</span>
+                            <span class="votes">&#8609;</span>
+                            <span>0</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </body>
+    </html>
