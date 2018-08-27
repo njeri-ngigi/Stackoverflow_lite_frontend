@@ -1,1 +1,1 @@
-# Stackoverflow_lite_frontend
+# STACKOVERFLOW-LITE
