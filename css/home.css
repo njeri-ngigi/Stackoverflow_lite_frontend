@@ -31,9 +31,9 @@
     padding: 1%;
     margin: 2%;
 }
-input[type=text]{
+input[type=text], textarea{
     font-family: Exo;
-    font-weight: 200;
+    font-weight: 400;
     margin-left: 30px;
     padding: 10px;
     border: none;
@@ -42,8 +42,8 @@ input[type=text]{
     margin-top: 10px;
 }
 input[type=button]{
-    width: 40px;
-    height: 30px;
+    width: 200px;
+    height: 40px;
     margin-left: 10px;
     margin-bottom: 10px;
     background: #222;

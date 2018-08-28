@@ -1,10 +1,13 @@
+#main{
+    margin-bottom: 3%;
+}
 #main, #editProfile{
     margin-top: 150px;
     width: 90%;
     position: absolute;
     margin-left: 5%
 }
-#editProfile, #changePassword{
+#editProfile, #changePassword, .answers, #userAnswers, #userQuestions{
     display: none;
 }
 #editProfile{
@@ -70,7 +73,7 @@ div.profile_name{
     margin-left: 10%;
 }
 
-#postQuestion input[type=text], textarea{
+#postQuestion input[type=text], textarea, .question_card input[type=text] {
     font-family: Exo;
     font-weight: 400;
     margin-left: 30px;
@@ -80,7 +83,7 @@ div.profile_name{
     width: 70%;
     margin-top: 10px;
 }
-#postQuestion input[type=button]{
+#postQuestion input[type=button], .question_card input[type=button]{
     width: 25%;
     height: 30px;
     margin-left: 40px;
@@ -145,4 +148,42 @@ input[type=password]:focus{
 
 input[type=button]:focus{
 	outline: none;
+}
+.question_card{
+    margin-top: 1%;
+    box-shadow: 1px 1px 3px grey;
+    height: auto;
+    padding: 1.5%;
+    width: 70%;
+    margin-left: 13%;
+}
+.question_card h2, .question_card h4{
+    color:black;
+    font-family: Exo;
+    font-weight: 400;
+}
+.question_card h2:hover, .question_card h4:hover, i{
+    cursor: pointer;
+}
+.material-icons, .votes, .add, .accept{
+    font-size: 30px;
+    margin-left: 20px;
+    padding: 10px;
+}
+.material-icons:hover, .votes:hover, .add:hover, .accept:hover{
+    cursor: pointer;
+}
+.answer_card, user_answer_card, .comment_card, .add_comment_card{
+    box-shadow: 1px 1px 3px grey;
+    padding: 1%;
+    margin: 2%;
+}
+.date{
+    float: right;
+}
+#first_question, #first_answer{
+    margin-top: 15%;
+}
+.accepted_answer{
+ color: green;
 }

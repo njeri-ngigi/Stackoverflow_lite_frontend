@@ -20,5 +20,15 @@ function showEditProfile(divId) {
 }
 function showEditPassword(){
     document.getElementById('changePassword').style.display = 'block';
-    document.getElementById("changePasswordButton").style.display = "none";
+    document.getElementById('changePasswordButton').style.display = "none";
+}
+function showQuestionCards(divId){
+    if (divId == 'userQuestions') {
+        document.getElementById('userQuestions').style.display = 'block';
+        document.getElementById('userAnswers').style.display = 'none';
+    }
+    if (divId == 'userAnswers') {
+        document.getElementById('userQuestions').style.display = 'none';
+        document.getElementById('userAnswers').style.display = 'block';
+    }  
 }
