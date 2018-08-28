@@ -1,0 +1,62 @@
+.main{
+    margin-top: 150px;
+    width: 90%;
+    position: absolute;
+    margin-left: 5%;
+}
+.profile{
+    width: 70%;
+    height: auto;
+    margin-left: 25%;
+    padding-left: 5%;
+}
+
+.profile_image{
+    margin-left: 70px;
+    box-shadow: 2px 2px 2px gray;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile_image img{
+    height: 200px;
+    width: 300px;
+}
+div.profile_name{
+    width: 40%;
+	margin-top: calc(0% - 200px);
+    margin-left: calc(50% - 120px);
+    padding-bottom: 50px;
+    border-left: 1px solid #999;
+    padding-top: 40px;
+    padding-left: 20px;
+}
+.profile_name h3:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+.stats_card{
+    width: 70%;
+    height: auto;
+    padding: 1%;
+    margin-left: 15%;
+    margin-top: 10px;
+}
+
+.Q_card{
+    box-shadow: 1px 1px 3px grey;
+    text-align: center;
+    width: 25%;
+    float: left;
+    margin-left: 20px;
+    transition: .5s ease;
+}
+.Q_card:hover{
+    box-shadow: 2px 3px 4px grey;
+    cursor: pointer;
+    transition: .5s ease;
+}
+.Q_left{
+    margin-left: 10%;
+}
