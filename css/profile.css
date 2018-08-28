@@ -1,8 +1,14 @@
-.main{
+#main, #editProfile{
     margin-top: 150px;
     width: 90%;
     position: absolute;
-    margin-left: 5%;
+    margin-left: 5%
+}
+#editProfile, #changePassword{
+    display: none;
+}
+#editProfile{
+    margin-left: 35%
 }
 .profile{
     width: 70%;
@@ -10,7 +16,6 @@
     margin-left: 25%;
     padding-left: 5%;
 }
-
 .profile_image{
     margin-left: 70px;
     box-shadow: 2px 2px 2px gray;
@@ -22,6 +27,10 @@
 .profile_image img{
     height: 200px;
     width: 300px;
+}
+.profile_image img:hover{
+    opacity: 0.8;
+    transition: 0.3s ease;
 }
 div.profile_name{
     width: 40%;
@@ -59,4 +68,81 @@ div.profile_name{
 }
 .Q_left{
     margin-left: 10%;
+}
+
+#postQuestion input[type=text], textarea{
+    font-family: Exo;
+    font-weight: 400;
+    margin-left: 30px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #777;
+    width: 70%;
+    margin-top: 10px;
+}
+#postQuestion input[type=button]{
+    width: 25%;
+    height: 30px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    background: #222;
+	border: 1px solid #222;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 0.8em;
+	font-weight: 400;
+    transition: 1s ease;
+}
+#postQuestion{
+    display: none;
+}
+#editProfile input[type=text], #editProfile input[type=password], #editProfile input[type=email]{
+	width: 25%;
+	height: 40px;
+	background: transparent;
+	border: 1px solid #555;
+	border-radius: 2px;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+#editProfile input[type=button], button{
+	width: 250px;
+	height: 45px;
+	background: #222;
+	border: 1px solid #222;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+    margin-top: 10px;
+    transition: 1s ease;
+}
+input[type=button]:hover, button:hover{
+    transition: 1s ease;
+	opacity: 0.8;
+}
+input[type=button]:active{
+	opacity: 0.6;
+}
+
+input[type=text]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+input[type=password]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+input[type=button]:focus{
+	outline: none;
 }

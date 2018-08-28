@@ -42,7 +42,7 @@ input[type=text]{
     margin-top: 10px;
 }
 input[type=button]{
-    width: 25%;
+    width: 40px;
     height: 30px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -53,7 +53,7 @@ input[type=button]{
 	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
-	font-weight: 400;
+	font-weight: 300;
     transition: 1s ease;
 }
 input[type=button]:hover{

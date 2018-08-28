@@ -16,15 +16,22 @@
                 </div>
                 <h3><a  href="home.html">HOME</a><span><a href="signup.html">LOG OUT</a></span></h3>   
             </div>
-            <div class="main">
+            <div id="main">
                 <div class="profile">
                     <div class="profile_image">
-                        <img src="../images/profile_picture.jpg">
+                        <img src="../images/profile_picture.jpg" title="Click to change avatar">
                     </div>
                     <div class="profile_name">
-                        <h3>@Njery</h3>
-                        <h3>Edit Profile?</h3>
-                        <h3>Post Question</h3>
+                        <div id="profileDetails">
+                            <h3>@Njery</h3>
+                            <h3 onclick="showEditProfile('editProfile')">Edit Profile?</h3>
+                            <h3 onclick="showPostQuestion('postQuestion')">Post Question</h3>
+                        </div>
+                        <div id="postQuestion">
+                            <input type="text" placeholder="Question Title"><br><br>
+                            <textarea placeholder="Question Content"></textarea><br><br>
+                            <input type="button" value="Post Question" onclick="showPostQuestion('profileDetails')">
+                        </div>
                     </div>
                 </div>
                 <div class="stats_card">
@@ -44,6 +51,20 @@
                         <h6>Answered</h6>
                     </div>
                 </div>
+            </div>
+            <div id="editProfile">
+                <form>
+                    <input id="name" type="text" value="Njeri Ngigi" required="*"><br><br>
+                    <input id="username" type="text" value="Njery" required="*"><br><br>
+                    <input id="email" type="email" value="njery@abc.ac.ke" required="*"><br><br>
+                    <div id="changePassword">
+                        <input id="old_password" type="password" placeholder="Old Password"><br><br>
+                        <input id="new_password" type="password" placeholder="New Password"><br><br>
+                        <input id="confirm_password" type="password" placeholder="Confirm Password"><br><br>
+                    </div>
+                    <input type="button" value="Save" onclick="showEditProfile('main')">
+                </form>
+                <button onclick="showEditPassword()" id="changePasswordButton">Change Password?</button><br><br>
             </div>
     </body>
 </html>
