@@ -1,11 +1,150 @@
+@media (min-width: 1300px){
+	div.profile_name{
+        width: 40%;
+        margin-top: calc(0% - 200px);
+        margin-left: calc(50% - 120px);
+        padding-bottom: 50px;
+        border-left: 1px solid #999;
+        padding-top: 40px;
+        padding-left: 20px;
+    }
+    .profile_image{
+        margin-left: 70px;
+    }
+}
+@media (max-width: 1300px){
+    div.profile_name{
+        text-align: justify;
+        margin-left: 15%;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        padding-left: 6%;
+    }
+    #prof_image{
+        margin-left: 12%;
+    }
+    .stats_card{
+        padding-bottom: 3%;
+    }
+}
+@media (max-width: 1000px){
+    #prof_image{
+        margin-left: 9%;
+    }  
+}  
+@media (max-width: 850px){
+    .stats_card{
+        padding-bottom: 6%;
+    }
+    .date{
+        display: none;
+    }
+    .date_small{
+        display: block;
+        float: right;
+        font-size: 0.7em;
+        font-weight: 400;
+    }
+}
+@media (min-width:650px){
+    #editProfile input[type=text], #editProfile input[type=password], #editProfile input[type=email]{
+        width: 300px;
+    }
+    .question_card{
+        width: 70%;
+    }
+    #main{
+        margin-left: 5%
+    }
+}
+@media (max-width: 650px){
+    #prof_image{
+        margin-left: 4%;
+    } 
+    .stats_card{
+        padding-bottom: 10%;
+    } 
+    #editProfile form, #editProfile button{
+        margin-left: -10%;
+    }
+    #editProfile input[type=text], #editProfile input[type=password], #editProfile input[type=email]{
+        width: 70%;
+    }
+
+}  
+@media (max-width: 540px){
+    #prof_image{
+        margin-left: -2%;
+    }   
+    .stats_card{
+        padding-bottom: 20%;
+        margin-left: 20%;
+    } 
+    #userQuestions, #userAnswers{
+        margin-left: 3%;
+    }
+    .question_card{
+        margin-bottom: 5%;
+    }
+}  
+@media (max-width:500px){
+    #first_question, #first_answer{
+        margin-top: 10%;
+    }
+}
+@media (min-width:541px){
+    #first_question, #first_answer{
+        margin-top: 10%;
+    }
+}
+@media (min-width:300px){
+    .Q_card{ 
+        float: left;        
+        width: 40%;
+    }
+}
+@media (max-width:300px){
+    .Q_card{ 
+        float: left;        
+        width: 40%;
+    }
+}
+@media (max-width: 350px){
+    div.profile_name{
+        padding-left: 15%;
+    }
+    #prof_image{
+        margin-left: -2%;
+    }   
+    .stats_card{
+        padding-bottom: 60%;
+        padding-left: 5%;
+        } 
+    .Q_card{
+        margin-bottom: 5%;
+        width: 100%;
+    }
+    #first_question, #first_answer{
+        margin-top: 10%;
+    }
+    #userQuestions, #userAnswers{
+        margin-left: 18%;
+    }
+    .question_card{
+        width: 100%;
+        padding: 1%;
+    }
+}  
+#prof_image{
+    width: auto;
+}
 #main{
     margin-bottom: 3%;
 }
 #main, #editProfile{
-    margin-top: 150px;
+    margin-top: 130px;
     width: 90%;
     position: absolute;
-    margin-left: 5%
 }
 #editProfile, #changePassword, .answers, #userAnswers, #userQuestions{
     display: none;
@@ -20,7 +159,6 @@
     padding-left: 5%;
 }
 .profile_image{
-    margin-left: 70px;
     box-shadow: 2px 2px 2px gray;
     height: 200px;
     width: 200px;
@@ -35,15 +173,7 @@
     opacity: 0.8;
     transition: 0.3s ease;
 }
-div.profile_name{
-    width: 40%;
-	margin-top: calc(0% - 200px);
-    margin-left: calc(50% - 120px);
-    padding-bottom: 50px;
-    border-left: 1px solid #999;
-    padding-top: 40px;
-    padding-left: 20px;
-}
+
 .profile_name h3:hover{
     cursor: pointer;
     opacity: 0.8;
@@ -51,19 +181,21 @@ div.profile_name{
 .stats_card{
     width: 70%;
     height: auto;
-    padding: 1%;
-    margin-left: 15%;
+    margin-left: 17%;
     margin-top: 10px;
 }
 
 .Q_card{
     box-shadow: 1px 1px 3px grey;
     text-align: center;
-    width: 25%;
-    float: left;
     margin-left: 20px;
     transition: .5s ease;
 }
+.Q_card p{
+    font-size: 1em;
+    font-weight: bolder
+}
+
 .Q_card:hover{
     box-shadow: 2px 3px 4px grey;
     cursor: pointer;
@@ -102,7 +234,6 @@ div.profile_name{
     display: none;
 }
 #editProfile input[type=text], #editProfile input[type=password], #editProfile input[type=email]{
-	width: 25%;
 	height: 40px;
 	background: transparent;
 	border: 1px solid #555;
@@ -114,7 +245,7 @@ div.profile_name{
 }
 
 #editProfile input[type=button], button{
-	width: 250px;
+	width: 200px;
 	height: 45px;
 	background: #222;
 	border: 1px solid #222;
@@ -154,7 +285,6 @@ input[type=button]:focus{
     box-shadow: 1px 1px 3px grey;
     height: auto;
     padding: 1.5%;
-    width: 70%;
     margin-left: 13%;
 }
 .question_card h2, .question_card h4{
@@ -180,9 +310,6 @@ input[type=button]:focus{
 }
 .date{
     float: right;
-}
-#first_question, #first_answer{
-    margin-top: 15%;
 }
 .accepted_answer{
  color: green;
