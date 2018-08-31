@@ -22,7 +22,15 @@ body{
 	-webkit-filter: blur(2px);
 	z-index: 0;
 }
+@media (min-width: 700px){
+	.header{
+		top: calc(50% - 300px);
+	}
+}
 @media (max-width: 700px){
+	.header{
+		top: calc(50% - 280px);
+	}
 	.header div{
 		margin-left: 25px;
 	}
@@ -38,7 +46,6 @@ body{
 }
 .header{
 	position: absolute;
-	top: calc(50% - 290px);
     left: calc(50% - 160px);
     font-family: 'Exo', sans-serif;
     z-index: 2;
