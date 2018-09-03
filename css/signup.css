@@ -54,7 +54,8 @@ body{
 	position: absolute;
 	top: -20px;
 	left: -20px;
-	right: -40px;
+	right: -70px;
+	bottom: -70px;
 	width: auto;
 	height: auto;
 	background-image: url(../images/signup_bg.jpg);
@@ -67,8 +68,8 @@ body{
 	position: absolute;
 	top: -20px;
 	left: -20px;
-	right: -40px;
-	bottom: -40px;
+	right: -70px;
+	bottom: -70px;
 	width: auto;
 	height: auto;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
