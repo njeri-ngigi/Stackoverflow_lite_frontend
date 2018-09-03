@@ -15,12 +15,14 @@
                 <div>STACKOVERFLOW |
                     <span>Lite</span>
                 </div>
-                <h3><a  href="home.html">HOME</a><span><a href="signup.html">LOG OUT</a></span></h3>   
+                <h3><a  href="home.html">HOME</a><span><a href="index.html">LOG OUT</a></span></h3>   
             </div>
             <div id="main">
                 <div class="profile">
-                    <div class="profile_image">
-                        <img src="../images/profile_picture.jpg" title="Click to change avatar">
+                    <div id="prof_image">
+                        <div class="profile_image">
+                            <img src="../images/profile_picture.jpg" title="Click to change avatar">
+                        </div>
                     </div>
                     <div class="profile_name">
                         <div id="profileDetails">
@@ -29,27 +31,23 @@
                             <h3 onclick="showPostQuestion('postQuestion')">Post Question</h3>
                         </div>
                         <div id="postQuestion">
-                            <input type="text" placeholder="Question Title"><br><br>
-                            <textarea placeholder="Question Content"></textarea><br><br>
-                            <input type="button" value="Post Question" onclick="showPostQuestion('profileDetails')">
+                            <form>
+                                <input type="text" placeholder="Question Title"><br><br>
+                                <textarea placeholder="Question Content"></textarea><br><br>
+                                <input type="button" value="Post Question" onclick="showPostQuestion('profileDetails')">
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="stats_card">
                     <div class="Q_card Q_left" onclick="showQuestionCards('userQuestions')" >
-                        <h1>34</h1>
-                        <h5>Questions</h5>
-                        <h6>Asked</h6>
+                        <h3>34</h3>
+                        <p>Questions</p>
                     </div>
-                    <div class="Q_card" onclick="showQuestionCards('userQuestions')">
-                        <h1>60</h1>
-                        <h5>Answers</h5>
-                        <h6>Given</h6>
-                    </div>
+                    
                     <div class="Q_card" onclick="showQuestionCards('userAnswers')">
-                        <h1>2</h1>
-                        <h5>Questions</h5>
-                        <h6>Answered</h6>
+                        <h3>2</h3>
+                        <p>Answers</p>
                     </div>
                 </div>
                 <div id="userQuestions">
@@ -61,7 +59,7 @@
                         <i class="material-icons" title="View answers" onclick="displayComments('answers1')"> forum </i> 
                         <span> 3 </span>
                         <span class="date">13:00:56 4<sup>th</sup>-Aug-2018</span>
-                        
+                        <span class="date_small">13:00 <br> 04-08-18</span>
 
                         <div id="answers1" class="answers">
                             <div class="answer_card">
@@ -123,8 +121,8 @@
                         </p>
                         <i class="material-icons" title="View answers" onclick="displayComments('answers2')"> forum </i>
                         <span>1</span>
-                        <span class="date">01:44:12 24
-                            <sup>th</sup>-July-2018</span>
+                        <span class="date">01:44:12 24<sup>th</sup>-July-2018</span>
+                        <span class="date_small">13:00 <br> 04-08-18</span>
 
                         <div class="answers" id="answers2">
                             <div class="answer_card">
@@ -154,9 +152,9 @@
                         <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea. Would you take use concrete
                             to make the tunnel or would it be more prudent to use a PVC pipe through the water?
                         </p>
-                        <span class="date">13:00:56 4
-                            <sup>th</sup>-Aug-2018</span>
-                    
+                        <span class="date">13:00:56 4<sup>th</sup>-Aug-2018</span>
+                        <span class="date_small">13:00 <br> 04-08-18</span>
+
                         <div class="user_answer_card">
                             <h4>
                                 <u>@njery</u>
@@ -179,9 +177,9 @@
                         <p>Other question. My emulator on Android Studio is really slow. 
                             Any recommendation on other types I could use?
                         </p>
-                        <span class="date">13:00:56 4
-                            <sup>th</sup>-Aug-2018</span>
-                    
+                        <span class="date">13:00:56 4<sup>th</sup>-Aug-2018</span>
+                        <span class="date_small">13:00 <br> 04-08-18</span>
+                        
                         <div class="user_answer_card">
                             <h4>
                                 <u>@njery</u>
