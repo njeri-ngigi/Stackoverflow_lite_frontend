@@ -27,7 +27,6 @@
                     <div class="profile_name">
                         <div id="profileDetails">
                             <h3>@Njery</h3>
-                            <h3 onclick="showEditProfile('editProfile')">Edit Profile?</h3>
                             <h3 onclick="showPostQuestion('postQuestion')">Post Question</h3>
                         </div>
                         <div id="postQuestion">
@@ -35,6 +34,7 @@
                                 <input type="text" placeholder="Question Title"><br><br>
                                 <textarea placeholder="Question Content"></textarea><br><br>
                                 <input type="button" value="Post Question" onclick="showPostQuestion('profileDetails')">
+                                <button onclick="showPostQuestion('profileDetails')" title="Cancel">X</button>
                             </form>
                         </div>
                     </div>
@@ -58,6 +58,7 @@
                         </p>
                         <i class="material-icons" title="View answers" onclick="displayComments('answers1')"> forum </i> 
                         <span> 3 </span>
+                        <span class="hide_answers" id="hide1" title="Hide Answers" onclick="hideAddComment('answers1'), hideAddComment('hide1')">X</span>
                         <span class="date">13:00:56 4<sup>th</sup>-Aug-2018</span>
                         <span class="date_small">13:00 <br> 04-08-18</span>
 
@@ -67,44 +68,26 @@
                                 <p>
                                     No. Wouldn't you rather just take a ship across the sea? That sounds way more reasonable.
                                 </p>
-                                <i class="material-icons"> forum </i>
-                                <span>1</span>
                                 <span class="votes">&#8607;</span>
                                 <span>4</span>
                                 <span class="votes">&#8609;</span>
                                 <span>7</span>
                                 <span class="accepted_answer accept" title="accepted answer">&#10003;</span>
-                                <div class="comment_card">
-                                    <h4><u>@quick_brains</u></h4>
-                                    <p>
-                                        I think she meant running wires like optic fibre
-                                    </p>
-                                </div>
                             </div>
 
                             <div class="answer_card">
-                                <h4>
-                                    <u>@lucy-o</u>
-                                </h4>
-                                <p>
-                                    Take a flight. Its faster.
-                                </p>
-                                <i class="material-icons"> forum </i>
-                                <span>0</span>
+                                <h4><u>@lucy-o</u></h4>
+                                <p>Take a flight. Its faster.</p>
                                 <span class="votes">&#8607;</span>
                                 <span>1</span>
                                 <span class="votes">&#8609;</span>
                                 <span>0</span>
                             </div>
                             <div class="answer_card">
-                                <h4>
-                                    <u>@karen</u>
-                                </h4>
+                                <h4><u>@karen</u></h4>
                                 <p>
                                     You could just not do that
                                 </p>
-                                <i class="material-icons"> forum </i>
-                                <span>0</span>
                                 <span class="votes">&#8607;</span>
                                 <span>0</span>
                                 <span class="votes">&#8609;</span>
@@ -121,19 +104,17 @@
                         </p>
                         <i class="material-icons" title="View answers" onclick="displayComments('answers2')"> forum </i>
                         <span>1</span>
+                        <span class="hide_answers" id="hide2" title="Hide Answers" onclick="hideAddComment('answers2'), hideAddComment('hide2')">X</span>
+                        
                         <span class="date">01:44:12 24<sup>th</sup>-July-2018</span>
                         <span class="date_small">13:00 <br> 04-08-18</span>
 
                         <div class="answers" id="answers2">
                             <div class="answer_card">
-                                <h4>
-                                    <u>@karen</u>
-                                </h4>
+                                <h4><u>@karen</u></h4>
                                 <p>
                                     You could just not do that
                                 </p>
-                                <i class="material-icons"> forum </i>
-                                <span>0</span>
                                 <span class="votes">&#8607;</span>
                                 <span>0</span>
                                 <span class="votes">&#8609;</span>
@@ -162,8 +143,6 @@
                             <p>
                                 PVC pip wouldn't corrode as much
                             </p>
-                            <i class="material-icons"> forum </i>
-                            <span>0</span>
                             <span class="votes">&#8607;</span>
                             <span>14</span>
                             <span class="votes">&#8609;</span>
@@ -187,8 +166,6 @@
                             <p>
                                 Try using GenyMotion. Its fast, lightweight and very efficient.
                             </p>
-                            <i class="material-icons"> forum </i>
-                            <span>0</span>
                             <span class="votes">&#8607;</span>
                             <span>31</span>
                             <span class="votes">&#8609;</span>
@@ -197,19 +174,6 @@
                     </div>
                 </div>
             </div>
-            <div id="editProfile">
-                <form>
-                    <input id="name" type="text" value="Njeri Ngigi" required="*"><br><br>
-                    <input id="username" type="text" value="Njery" required="*"><br><br>
-                    <input id="email" type="email" value="njery@abc.ac.ke" required="*"><br><br>
-                    <div id="changePassword">
-                        <input id="old_password" type="password" placeholder="Old Password"><br><br>
-                        <input id="new_password" type="password" placeholder="New Password"><br><br>
-                        <input id="confirm_password" type="password" placeholder="Confirm Password"><br><br>
-                    </div>
-                    <input type="button" value="Save" onclick="showEditProfile('main')">
-                </form>
-                <button onclick="showEditPassword()" id="changePasswordButton">Change Password?</button><br><br>
-            </div>
+            
     </body>
 </html>
