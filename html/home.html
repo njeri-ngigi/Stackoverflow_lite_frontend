@@ -23,8 +23,8 @@
                     <div id="postQuestion">
                         <input type="text" placeholder="Question Title"><br><br>
                         <textarea placeholder="Question Content"></textarea><br><br>
-                        <input type="button" value="Post Question" onclick="hideAddComment('postQuestion')">
-                        <button>X</button>
+                        <input type="button" value="Post Question" title="Post Question" onclick="hideAddComment('postQuestion')">
+                        <button onclick="hideAddComment('postQuestion')" title="Cancel">X</button>
                     </div>
                 </div>
                 <div class="question_card">
@@ -40,6 +40,7 @@
                     <div class="add_comment_card" id="add1">
                         <input type="text" placeholder="Answer this question ..."><br><br>
                         <input type="button" value="Add" onclick="hideAddComment('add1')">
+                        <button onclick="hideAddComment('add1')" title="Cancel">X</button>
                     </div>
 
                     <div id="answers1" class="answers">
@@ -110,6 +111,7 @@
                     <div class="add_comment_card" id="add2">
                         <input type="text" placeholder="Answer this question ..."><br><br>
                         <input type="button" value="Add" onclick="hideAddComment('add2')">
+                        <button onclick="hideAddComment('add2')" title="Cancel">X</button>
                     </div>
 
                     <div class="answers" id="answers2"></div>
@@ -132,6 +134,7 @@
                     <div class="add_comment_card" id="add3">
                         <input type="text" placeholder="Answer this question ..."><br><br>
                         <input type="button" value="Add" onclick="hideAddComment('add3')">
+                        <button onclick="hideAddComment('add3')" title="Cancel">X</button>
                     </div>
 
                     <div class="answers" id="answers3">

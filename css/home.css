@@ -73,7 +73,10 @@ input[type=text], textarea{
 }
 input[type=button]{
     width: 50%;
+}
+input[type=button], button{
     height: 40px;
+    padding: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
     background: #222;
@@ -89,6 +92,13 @@ input[type=button]{
 input[type=button]:hover{
     transition: 1s ease;
     opacity: 0.7;
+}
+button{
+    font-weight: 700;
+}
+button:hover{
+    font-weight: 700;
+    color: red;
 }
 .answers, .add_comment_card, #postQuestion{
     display: none;
