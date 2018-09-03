@@ -8,20 +8,7 @@ function showPostQuestion(divId) {
         document.getElementById('profileDetails').style.display = 'block';
   }  
 }
-function showEditProfile(divId) {
-    if (divId == 'editProfile') {
-        document.getElementById('editProfile').style.display = 'block';
-        document.getElementById('main').style.display = 'none';
-    }
-    if (divId == 'main') {
-        document.getElementById('editProfile').style.display = "none";
-        document.getElementById('main').style.display = "block";
-    }
-}
-function showEditPassword(){
-    document.getElementById('changePassword').style.display = 'block';
-    document.getElementById('changePasswordButton').style.display = "none";
-}
+
 function showQuestionCards(divId){
     if (divId == 'userQuestions') {
         document.getElementById('userQuestions').style.display = 'block';
