@@ -13,6 +13,15 @@
     }
 }
 @media (max-width: 1300px){
+    div#postQuestion{
+        margin-top: 30px;
+        padding-top: 4%;
+        width: 60%;
+        padding-left: 5%;
+    }
+    #postQuestion input[type=text], #postQuestion textarea{
+        text-align: center;
+    }
     #profileDetails{
         text-align: justify;
         margin-left: 15%;
@@ -28,6 +37,9 @@
     }
 }
 @media (max-width: 1000px){
+    div#first_question, div#first_answer{
+        margin-top: 12%;
+    }
     #prof_image{
         margin-left: 9%;
     }  
@@ -47,9 +59,6 @@
     }
 }
 @media (min-width:650px){
-    #editProfile input[type=text], #editProfile input[type=password], #editProfile input[type=email]{
-        width: 300px;
-    }
     .question_card{
         width: 70%;
     }
@@ -65,15 +74,11 @@
     .stats_card{
         padding-bottom: 10%;
     } 
-    #editProfile form, #editProfile button{
-        margin-left: -10%;
-    }
-    #editProfile input[type=text], #editProfile input[type=password], #editProfile input[type=email]{
-        width: 70%;
-    }
-
 }  
 @media (max-width: 540px){
+    div#postQuestion{
+        width: 100%;
+    }
     #prof_image{
         margin-left: -2%;
     }   
@@ -142,16 +147,13 @@
 #main{
     margin-bottom: 3%;
 }
-#main, #editProfile{
+#main{
     margin-top: 130px;
     width: 90%;
     position: absolute;
 }
-#editProfile, #changePassword, .answers, #userAnswers, #userQuestions{
+#changePassword, .answers, #userAnswers, #userQuestions{
     display: none;
-}
-#editProfile{
-    margin-left: 35%
 }
 .profile{
     width: 70%;
@@ -205,9 +207,7 @@
 .Q_left{
     margin-left: 10%;
 }
-
-#postQuestion input[type=text], textarea, .question_card input[type=text] {
-    
+#postQuestion input[type=text], textarea{
     font-family: Exo;
     font-weight: 400;
     margin-left: 30px;
@@ -217,10 +217,13 @@
     width: 70%;
     margin-top: 10px;
 }
-#postQuestion input[type=button], .question_card input[type=button]{
-    width: 50%;
-    height: 30px;
-    margin-left: 40px;
+#postQuestion input[type=button]{
+    width: 45%;
+    margin-left: 30px;
+}
+#postQuestion input[type=button], #postQuestion button{
+    padding: 10px;
+    height: 40px;
     margin-bottom: 10px;
     background: #222;
 	border: 1px solid #222;
@@ -228,41 +231,21 @@
 	border-radius: 2px;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
-	font-size: 0.8em;
+	font-size: 0.9em;
 	font-weight: 400;
     transition: 1s ease;
+}
+#postQuestion button:hover{
+    color:  red;
+    transition: .3s ease;
+    
 }
 #postQuestion{
     display: none;
 }
-#editProfile input[type=text], #editProfile input[type=password], #editProfile input[type=email]{
-	height: 40px;
-	background: transparent;
-	border: 1px solid #555;
-	border-radius: 2px;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-}
 
-#editProfile input[type=button], button{
-	width: 200px;
-	height: 45px;
-	background: #222;
-	border: 1px solid #222;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 6px;
-    margin-top: 10px;
-    transition: 1s ease;
-}
 input[type=button]:hover, button:hover{
-    transition: 1s ease;
+    transition: .5s ease;
 	opacity: 0.8;
 }
 input[type=button]:active{
@@ -270,18 +253,10 @@ input[type=button]:active{
 }
 
 input[type=text]:focus{
-	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.9);
+    transition: 1s ease;
 }
 
-input[type=password]:focus{
-	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
-}
-
-input[type=button]:focus{
-	outline: none;
-}
 .question_card{
     margin-top: 1%;
     box-shadow: 1px 1px 3px grey;
@@ -305,7 +280,7 @@ input[type=button]:focus{
 .material-icons:hover, .votes:hover, .add:hover, .accept:hover{
     cursor: pointer;
 }
-.answer_card, user_answer_card, .comment_card, .add_comment_card{
+.answer_card, user_answer_card, .add_comment_card, #postQuestion{
     box-shadow: 1px 1px 3px grey;
     padding: 1%;
     margin: 2%;
@@ -315,4 +290,15 @@ input[type=button]:focus{
 }
 .accepted_answer{
  color: green;
+}
+.hide_answers{
+    padding: 10px;
+    font-weight: 400;
+    font-size: 1.5em;
+    margin-left: 10px;
+    display: none;
+}
+.hide_answers:hover{
+    color: green;
+    cursor: pointer;
 }
