@@ -6,7 +6,7 @@ body{
 	padding: 0;
 	background: #fff;
 	font-family: Exo;
-    font-size: 0.9em;
+    font-size: 1em;
     margin-bottom: 3%;
 }
 .body{
@@ -22,15 +22,8 @@ body{
 	-webkit-filter: blur(2px);
 	z-index: 0;
 }
-@media (min-width: 700px){
-	.header{
-		top: calc(50% - 300px);
-	}
-}
+
 @media (max-width: 700px){
-	.header{
-		top: calc(50% - 270px);
-	}
 	.header div{
 		margin-left: 25px;
 	}
@@ -39,13 +32,14 @@ body{
 		margin-left: 30px;
 	}
 	.header h3 span{
-		margin-top: 3px;
+		margin-top: 2px;
 		margin-right: 10px;
-    	font-size: 0.8em;
+		font-size: 0.9em
 	}
 }
 .header{
 	position: absolute;
+	top: calc(50% - 290px);
     left: calc(50% - 160px);
     font-family: 'Exo', sans-serif;
     z-index: 2;
@@ -60,7 +54,10 @@ body{
 .header div span{
 	color: yellow !important;
 }
-
+.header h3{
+		font-family: 'Exo', sans-serif; 
+		font-weight: 400
+	}
 .header h3 a:hover{
     cursor: pointer;
     opacity: 0.9;
@@ -71,5 +68,5 @@ h3 a{
 }
 h3 span{
     float: right;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
