@@ -35,6 +35,7 @@
                     <i class="material-icons" title="View answers" onclick="displayComments('answers1')"> forum </i> 
                     <span> 3 </span>
                     <span class="add" title="Answer this question" onclick="showAddComment('add1')">&#xff0b;</span>
+                    <span class="hide_answers" id="hide1" title="Hide Answers" onclick="hideAddComment('answers1'), hideAddComment('hide1')">X</span>
                     <span class="date">13:00:56 4<sup>th</sup>-Aug-2018</span>
                     <span class="date_small">13:00 <br> 04-08-18</span>
                     <div class="add_comment_card" id="add1">
@@ -49,19 +50,11 @@
                             <p>
                                 No. Wouldn't you rather just take a ship across the sea? That sounds way more reasonable.
                             </p>
-                            <i class="material-icons"> forum </i>
-                            <span>1</span>
                             <span class="votes">&#8607;</span>
                             <span>4</span>
                             <span class="votes">&#8609;</span>
                             <span>7</span>
 
-                            <div class="comment_card">
-                                <h4><u>@quick_brains</u></h4>
-                                <p>
-                                    I think she meant running wires like optic fibre
-                                </p>
-                            </div>
                         </div>
 
                         <div class="answer_card">
@@ -71,8 +64,7 @@
                             <p>
                                 Take a flight. Its faster.
                             </p>
-                            <i class="material-icons"> forum </i>
-                            <span>0</span>
+                            
                             <span class="votes">&#8607;</span>
                             <span>1</span>
                             <span class="votes">&#8609;</span>
@@ -85,8 +77,7 @@
                             <p>
                                 You could just not do that
                             </p>
-                            <i class="material-icons"> forum </i>
-                            <span>0</span>
+                            
                             <span class="votes">&#8607;</span>
                             <span>0</span>
                             <span class="votes">&#8609;</span>
@@ -105,6 +96,7 @@
                     <i class="material-icons" title="View answers" onclick="displayComments('answers2')"> forum </i>
                     <span>0</span>
                     <span class="add" title="Answer this question" onclick="showAddComment('add2')">&#xff0b;</span>
+                    <span class="hide_answers" id="hide2" title="Hide Answers" onclick="hideAddComment('answers2'), hideAddComment('hide2')">X</span>
                     <span class="date">01:44:12 24<sup>th</sup>-July-2018</span>
                     <span class="date_small">13:00 <br> 04-08-18</span>
 
@@ -128,49 +120,33 @@
                     <i class="material-icons" title="View answers" onclick="displayComments('answers3')"> forum </i>
                     <span>2</span>
                     <span class="add" title="Answer this question" onclick="showAddComment('add3')">&#xff0b;</span>
+                    <span class="hide_answers" id="hide3" title="Hide Answers" onclick="hideAddComment('answers3'), hideAddComment('hide3')">X</span>
                     <span class="date">22:16:09 12<sup>th</sup>-July-2018</span>
                     <span class="date_small">13:00 <br> 04-08-18</span>
 
                     <div class="add_comment_card" id="add3">
                         <input type="text" placeholder="Answer this question ..."><br><br>
                         <input type="button" value="Add" onclick="hideAddComment('add3')">
-                        <button onclick="hideAddComment('add3')" title="Cancel">X</button>
+                        <button onclick="hideAddComment('add3')" title="Cancel" >X</button>
                     </div>
 
                     <div class="answers" id="answers3">
                         <div class="answer_card">
-                            <h4>
-                                <u>@jay</u>
-                            </h4>
+                            <h4><u>@jay</u></h4>
                             <p>
                                 No. Wouldn't you rather just take a ship across the sea? That sounds way more reasonable.
                             </p>
-                            <i class="material-icons"> forum </i>
-                            <span>1</span>
                             <span class="votes">&#8607;</span>
                             <span>4</span>
                             <span class="votes">&#8609;</span>
                             <span>7</span>
-                
-                            <div class="comment_card">
-                                <h4>
-                                    <u>@quick_brains</u>
-                                </h4>
-                                <p>
-                                    I think she meant running wires like optic fibre
-                                </p>
-                            </div>
                         </div>
                 
                         <div class="answer_card">
-                            <h4>
-                                <u>@karen</u>
-                            </h4>
+                            <h4><u>@karen</u></h4>
                             <p>
                                 You could just not do that
                             </p>
-                            <i class="material-icons"> forum </i>
-                            <span>0</span>
                             <span class="votes">&#8607;</span>
                             <span>0</span>
                             <span class="votes">&#8609;</span>
