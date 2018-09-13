@@ -1,0 +1,124 @@
+@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+@media (max-width: 700px){
+	.main div{
+        padding-bottom: 10px;
+    }
+    .answer_card div{
+        margin-top: 20px;
+    }
+    .date{
+        display: none;
+    }
+    .date_small{
+        display: block;
+        float: right;
+        font-size: 0.7em;
+        font-weight: 400;
+    }
+}
+@media (max-width: 400px){
+    .date_small{
+        display: none;
+    }
+    .header div{
+        font-size: 0.5em;
+    }
+}
+@media (min-width: 700px){
+    .date_small{
+        display: none;
+    }
+}
+.question_card{
+    box-shadow: 1px 1px 3px grey;
+    height: auto;
+    padding: 1.5%;
+    width: 70%;
+    margin-top: 20px;
+    margin-left: 13%;
+}
+.question_card h2, .question_card h4{
+    color:black;
+    font-family: Exo;
+    font-weight: 400;
+}
+.question_card h2:hover, .question_card h4:hover{
+    cursor: pointer;
+}
+#top_question{
+    margin-top: 130px;
+}
+.material-icons, .votes, .add{
+    font-size: 30px;
+    margin-left: 20px;
+    padding: 10px;
+}
+
+.answer_card, .comment_card, .add_comment_card{
+    box-shadow: 1px 1px 3px grey;
+    padding: 1%;
+    margin: 2%;
+}
+input[type=text], textarea{
+    font-family: Exo;
+    font-weight: 400;
+    margin-left: 30px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #777;
+    width: 70%;
+    margin-top: 10px;
+}
+input[type=button]{
+    width: 50%;
+}
+input[type=button], button{
+    height: 40px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background: #222;
+	border: 1px solid #222;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+    transition: 1s ease;
+}
+input[type=button]:hover{
+    transition: 1s ease;
+    opacity: 0.7;
+}
+button{
+    font-weight: 700;
+}
+button:hover{
+    font-weight: 700;
+    color: red;
+}
+.answers, .add_comment_card, #postQuestion{
+    display: none;
+}
+i:hover, .votes:hover, .add:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+.date{
+    float: right;
+    font-size: 0.7em;
+    font-weight: 400;
+}
+.hide_answers{
+    padding: 10px;
+    font-weight: 400;
+    display: none;
+    font-size: 1.5em;
+}
+.hide_answers:hover{
+    color: green;
+    cursor: pointer;
+}

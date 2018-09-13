@@ -1,0 +1,51 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../css/signup.css">
+        <script src="../js/signup.js"></script>
+        <title>Stackoverflow-lite Signup | Login</title>
+    </head>
+    <body>
+        <div class="body"></div>
+        <div class="grad"></div>
+        <div class="header">
+            <div><span>STACKOVERFLOW |</span>
+                    <span id="header_small">Lite</span>
+                </div>
+        </div>
+        <div class="main">
+            <div id="buttons">
+                <button onclick="display('signup')">Signup <span> &#187 </span></button><br><br>
+                <button onclick="display('login')">Login <span> &#187 </span></button>
+            </div>
+            <div id="signup">
+                <form>
+                    <input id="name" type="text" placeholder="Name" required="*"><br><br><br>
+                    <input id="username" type="text" placeholder="Username" required="*"><br><br><br>
+                    <input id="email" type="email" placeholder="Email" required="*"><br><br><br>
+                    <input id="password" type="password" placeholder="Password" required="*"><br><br><br>
+                    <input id="confirm_password" type="password" placeholder="Confirm Password" required="*"><br><br><br>
+                    <a href="home.html"><input type="button" value="Signup"></a>
+                </form>
+                <p>Already have an account?
+                    <u>
+                        <span onclick="display('login')">Log in</span>
+                    </u>
+                </p>
+            </div>
+            <div id="login">
+                <form>
+                    <input id="username" type="text" placeholder="Username" required="*"><br><br><br>
+                    <input id="password" type="password" placeholder="Password" required="*"><br><br>
+                    <a href="home.html"><input type="button" value="Login"></a>
+                </form>
+                <p>Don't have an account?
+                    <u>
+                        <span onclick="display('signup')">Sign up</span>
+                    </u>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
