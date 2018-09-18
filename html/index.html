@@ -3,7 +3,6 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../css/signup.css">
-        <script src="../js/signup.js"></script>
         <title>Stackoverflow-lite Signup | Login</title>
     </head>
     <body>
@@ -14,19 +13,20 @@
                     <span id="header_small">Lite</span>
                 </div>
         </div>
+       
         <div class="main">
             <div id="buttons">
                 <button onclick="display('signup')">Signup <span> &#187 </span></button><br><br>
                 <button onclick="display('login')">Login <span> &#187 </span></button>
             </div>
             <div id="signup">
-                <form>
-                    <input id="name" type="text" placeholder="Name" required="*"><br><br><br>
-                    <input id="username" type="text" placeholder="Username" required="*"><br><br><br>
-                    <input id="email" type="email" placeholder="Email" required="*"><br><br><br>
-                    <input id="password" type="password" placeholder="Password" required="*"><br><br><br>
-                    <input id="confirm_password" type="password" placeholder="Confirm Password" required="*"><br><br><br>
-                    <a href="home.html"><input type="button" value="Signup"></a>
+                <form id"signupForm">
+                    <input id="name" type="text" placeholder="Name" required><br><br><br>
+                    <input id="username" type="text" placeholder="Username" required><br><br><br>
+                    <input id="email" type="email" placeholder="Email" required><br><br><br>
+                    <input id="password" type="password" placeholder="Password" required><br><br><br>
+                    <input id="confirm_password" type="password" placeholder="Confirm Password" required><br><br><br>
+                    <input id="signupButton" type="button" value="Signup" onclick="signup()">
                 </form>
                 <p>Already have an account?
                     <u>
@@ -36,9 +36,9 @@
             </div>
             <div id="login">
                 <form>
-                    <input id="username" type="text" placeholder="Username" required="*"><br><br><br>
-                    <input id="password" type="password" placeholder="Password" required="*"><br><br>
-                    <a href="home.html"><input type="button" value="Login"></a>
+                    <input id="loginUsername" type="text" placeholder="Username" required><br><br><br>
+                    <input id="loginPassword" type="password" placeholder="Password" required><br><br>
+                    <input id="loginButton" type="button" value="Login" onclick="defineLogin()">
                 </form>
                 <p>Don't have an account?
                     <u>
@@ -47,5 +47,6 @@
                 </p>
             </div>
         </div>
+        <script src="../js/signup.js"></script>
     </body>
 </html>
