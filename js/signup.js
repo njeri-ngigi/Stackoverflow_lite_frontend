@@ -12,8 +12,8 @@ function display(divId) {
   }
 };
 const getEl = id => document.getElementById(id).value;
-const showAlert = message => setTimeout(function(){ alert(message);}, 300);
-
+const showAlert = message => setTimeout(function() { alert(message); }, 300);
+let status = '';
 function login(username, password) {
   let url = 'http://localhost:5000/api/v1/auth/login';
   fetch(url, {
@@ -21,15 +21,24 @@ function login(username, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username: username, password: password })
   })
-    .then(response => response.json())
+    .then((response) => {
+      status = response.status;
+      return response.json();
+    })
     .then((data) => {
       console.log(data);
       console.log(username, password);
       showAlert(data.message);
-      if (data.status_code === 200) {
+      console.log(status)
+      if (status === 200) {
+        console.log("Heyyo!")
+        window.location.replace('./home.html');
         let token = data.token;
-        token = 'token='+token;
-        document.cookie = token;
+        if (typeof (Storage) !== 'undefined') {
+          localStorage.setItem("token", token);
+        } else {
+          showAlert('Sorry! No web storage support..');
+        }
       }
     })
     .catch(error => console.log(error))
@@ -58,7 +67,7 @@ function signup() {
     .then(response => response.json())
     .then((data) => {
       showAlert(data.message);
-      if (data.status_code === 201) {
+      if (data.status === 201) {
         login(username, password);
       }
     })
