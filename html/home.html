@@ -5,7 +5,6 @@
             <link rel="stylesheet" type="text/css" href="../css/home.css">
             <link rel="stylesheet" type="text/css" href="../css/common.css">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <script src="../js/home.js"></script>
             <title>Stackoverflow-lite Home</title>
         </head>
         <body>
@@ -19,12 +18,12 @@
             </div>
             <div class="main" id="questions">
                 <div class="question_card" id="top_question">
-                    <h2 onclick="showAddComment('postQuestion')">Post a question</h2>
+                    <h2 onclick="showBlock('postQuestion')">Post a question</h2>
                     <div id="postQuestion">
-                        <input type="text" placeholder="Question Title"><br><br>
-                        <textarea placeholder="Question Content"></textarea><br><br>
-                        <input type="button" value="Post Question" title="Post Question" onclick="hideAddComment('postQuestion')">
-                        <button onclick="hideAddComment('postQuestion')" title="Cancel">X</button>
+                        <input id="titleQst" type="text" placeholder="Question Title"><br><br>
+                        <textarea id="contentQst" placeholder="Question Content"></textarea><br><br>
+                        <input id="postQuestionBtn" type="button" value="Post Question" title="Post Question" onclick="postQuestions(postQuestion)">
+                        <button type="reset" onclick="hide('postQuestion')" title="Cancel">X</button>
                     </div>
                 </div>
                 <script src="../js/fetchData.js"></script>
