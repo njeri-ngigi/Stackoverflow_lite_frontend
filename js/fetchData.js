@@ -13,6 +13,12 @@ function showBlock(el) {
 function showInline(el) {
   document.getElementById(el).style.display = "inline";
 }
+let my_token = localStorage.getItem("token");
+if (my_token === undefined || my_token === null || my_token === "") {
+  hide('profileH3');
+  showBlock('loginH3');
+} 
+
 const divMain = document.getElementById('questions');
 const url_seg = "http://localhost:5000/api/v1/";
 let url = url_seg + 'questions?pages=1';
@@ -100,6 +106,7 @@ let postAnswer = (questionId, contentId, divId) => {
   url = url_seg + 'questions/' + questionId + '/answers';
   postStuff(url, data, divId);
 };
+let status = "";
 
 const postStuff = (myUrl, data, divId) => {
   token = localStorage.getItem('token');
@@ -112,16 +119,46 @@ const postStuff = (myUrl, data, divId) => {
     },
     body: JSON.stringify(data)
   })
-  .then((response) =>{
+    .then((response) =>{
       status = response.status;
       return response.json();
     })
     .then((data) => {
       showAlert(data.message);
       if (status === 201) {
-          window.location.reload();
+        window.location.reload();
         hide(divId);
       }
     })
     .catch(error => console.log(error))
 };
+
+const logout = () => {
+  url = url_seg + "auth/logout";
+  token = localStorage.getItem('token');
+  token = "Bearer " + token; 
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+  })
+  .then((response) => {
+      status = response.status;
+      return response.json();
+  })
+  .then((data) => {
+      localStorage.removeItem("token");
+      window.location.replace("./index.html");
+      if (status !== 200) {
+        showAlert(data.msg);
+      }
+      else{
+        showAlert(data.message);
+      }      
+  })
+  .catch(error => console.log(error))
+}
+

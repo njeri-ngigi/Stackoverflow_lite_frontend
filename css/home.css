@@ -100,3 +100,6 @@ i:hover, .votes:hover, .add:hover{
     color: green;
     cursor: pointer;
 }
+#loginH3{
+    display: none;
+}
