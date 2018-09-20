@@ -13,6 +13,7 @@ function display(divId) {
 };
 const getEl = id => document.getElementById(id).value;
 const showAlert = message => setTimeout(function() { alert(message); }, 300);
+
 let status = '';
 function login(username, password) {
   let url = 'http://localhost:5000/api/v1/auth/login';
@@ -36,6 +37,7 @@ function login(username, password) {
         let token = data.token;
         if (typeof (Storage) !== 'undefined') {
           localStorage.setItem("token", token);
+          localStorage.setItem('username', username);
         } else {
           showAlert('Sorry! No web storage support..');
         }
