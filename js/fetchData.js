@@ -13,8 +13,15 @@ function showBlock(el) {
 function showInline(el) {
   document.getElementById(el).style.display = "inline";
 }
+let my_token = localStorage.getItem("token");
+if (my_token === undefined || my_token === null || my_token === "") {
+  hide('profileH3');
+  showBlock('loginH3');
+} 
+
 const divMain = document.getElementById('questions');
-let url = 'http://localhost:5000/api/v1/questions?pages=1';
+const url_seg = "http://localhost:5000/api/v1/";
+let url = url_seg + 'questions?pages=1';
 let count = 1;
 
 const getEl = id => document.getElementById(id).value;
@@ -40,8 +47,8 @@ fetch(url)
           <span class="hide_answers" id=${hideId} title="Hide Answers" onclick="hide('${answerId}'), hide('${hideId}')">X</span>
           <div class="add_comment_card" id="${addId}">
             <input id=${contentId} type="text" placeholder="Answer this question ..."><br><br>
-            <input id=${buttonId} type="button" value="Add" onclick(postAnswer(${question.id}, ${contentId}, ${addId}))>
-            <button title="Cancel" onclick="hide('${addId}')">X</button>
+            <input id=${buttonId} type="button" value="Add" onclick="postAnswer('${question.id}', '${contentId}', '${addId}')">
+            <button title="Cancel" onclick="hide('${addId}')" type="reset">X</button>
           </div>`;
 
       let qDiv = createNode('div');
@@ -49,7 +56,7 @@ fetch(url)
       qDiv.classList.add('question_card');
       qDiv.innerHTML = h;
       ansDiv.setAttribute('id', answerId);
-      ansDiv.classList.add('answers')
+      ansDiv.classList.add('answers');
       addAnswers(question.id, ansDiv);
       append(qDiv, ansDiv);
       append(divMain, qDiv);
@@ -59,7 +66,7 @@ fetch(url)
   .catch(error => console.log(error));
 
 const addAnswers = (questionId, ansDiv) => {
-  url = "http://localhost:5000/api/v1/questions/" + questionId + "/answers";
+  url = url_seg + "questions/" + questionId + "/answers";
   fetch(url)
     .then(response => response.json())
     .then((data) => {
@@ -82,7 +89,7 @@ const addAnswers = (questionId, ansDiv) => {
 const postQuestions = (divId) => {
   let title = getEl('titleQst');
   let content = getEl('contentQst');
-  url = 'http://localhost:5000/api/v1/questions/';
+  url = url_seg + 'questions/';
   let data = {
     title: title,
     content: content
@@ -96,9 +103,10 @@ let postAnswer = (questionId, contentId, divId) => {
   let data = {
     content: content
   };
-  url = 'http://localhost:5000/api/v1/questions/' + questionId + '/answers';
+  url = url_seg + 'questions/' + questionId + '/answers';
   postStuff(url, data, divId);
 };
+let status = "";
 
 const postStuff = (myUrl, data, divId) => {
   token = localStorage.getItem('token');
@@ -111,12 +119,46 @@ const postStuff = (myUrl, data, divId) => {
     },
     body: JSON.stringify(data)
   })
-  .then(response => response.json())
+    .then((response) =>{
+      status = response.status;
+      return response.json();
+    })
     .then((data) => {
       showAlert(data.message);
-      if (data.status_code === 201) {
+      if (status === 201) {
+        window.location.reload();
         hide(divId);
       }
     })
     .catch(error => console.log(error))
 };
+
+const logout = () => {
+  url = url_seg + "auth/logout";
+  token = localStorage.getItem('token');
+  token = "Bearer " + token; 
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+  })
+  .then((response) => {
+      status = response.status;
+      return response.json();
+  })
+  .then((data) => {
+      localStorage.removeItem("token");
+      window.location.replace("./index.html");
+      if (status !== 200) {
+        showAlert(data.msg);
+      }
+      else{
+        showAlert(data.message);
+      }      
+  })
+  .catch(error => console.log(error))
+}
+

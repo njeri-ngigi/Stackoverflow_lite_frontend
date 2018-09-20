@@ -58,7 +58,7 @@ body{
 		font-family: 'Exo', sans-serif; 
 		font-weight: 400
 	}
-.header h3 a:hover{
+.header h3 span:hover{
     cursor: pointer;
     opacity: 0.9;
 }
@@ -68,5 +68,5 @@ h3 a{
 }
 h3 span{
     float: right;
-    font-size: 0.9em;
+	font-size: 0.9em;
 }
