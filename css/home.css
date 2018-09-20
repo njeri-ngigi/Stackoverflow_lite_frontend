@@ -33,13 +33,13 @@
 #top_question{
     margin-top: 130px;
 }
-.material-icons, .votes, .add{
+.material-icons, .votes, .add, .editIcon{
     font-size: 30px;
     margin-left: 20px;
     padding: 10px;
 }
 
-.answer_card, .comment_card, .add_comment_card{
+.answer_card, .comment_card, .add_comment_card, .editProfile{
     box-shadow: 1px 1px 3px grey;
     padding: 1%;
     margin: 2%;
@@ -86,7 +86,7 @@ button:hover{
 .answers, .add_comment_card, #postQuestion{
     display: none;
 }
-i:hover, .votes:hover, .add:hover{
+i:hover, .votes:hover, .add:hover, .editIcon:hover, .delete:hover {
     cursor: pointer;
     opacity: 0.7;
 }
@@ -102,4 +102,17 @@ i:hover, .votes:hover, .add:hover{
 }
 #loginH3{
     display: none;
+
+}
+.editForm{
+    display: none;
+    position: fixed;
+    z-index: 22;
+}
+.delete{
+    color: red;
+    font-size: 1.5em;
+    margin-left: 10px;
+    padding: 10px;
+
 }

@@ -277,7 +277,7 @@ input[type=text]:focus{
     margin-left: 20px;
     padding: 10px;
 }
-.material-icons:hover, .votes:hover, .add:hover, .accept:hover{
+.material-icons:hover, .votes:hover, .add:hover, .accept:hover, .delete:hover{
     cursor: pointer;
 }
 .answer_card, user_answer_card, .add_comment_card, #postQuestion{
@@ -288,7 +288,7 @@ input[type=text]:focus{
 .date{
     float: right;
 }
-.accepted_answer{
+#accepted_answer{
  color: green;
 }
 .hide_answers{
@@ -301,4 +301,10 @@ input[type=text]:focus{
 .hide_answers:hover{
     color: green;
     cursor: pointer;
+}
+.delete{
+    color: red;
+    font-size: 1.5em;
+    margin-left: 10px;
+    padding: 10px;
 }
