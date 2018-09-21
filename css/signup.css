@@ -60,7 +60,7 @@ body{
 	height: auto;
 	background-image: url(../images/signup_bg.jpg);
 	background-size: cover;
-	-webkit-filter: blur(5px);
+	-webkit-filter: blur(6px);
 	z-index: 0;
 }
 
@@ -79,7 +79,7 @@ body{
 
 .header{
 	position: absolute;
-	top: calc(50% - 200px);
+	top: calc(50% - 210px);
 	left: calc(50% - 180px);
 	z-index: 2;
 }
@@ -89,6 +89,13 @@ body{
 	font-family: 'Exo', sans-serif;
 	font-weight: 200;
 	font-size: 250%;
+	cursor: pointer;
+}
+.header h4{
+    font-family: 'Exo', sans-serif;
+	font-weight: 400;
+	font-size: 1.6em;
+	text-align: center;
 }
 #header_small{
 	color: yellow !important;

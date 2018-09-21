@@ -1,37 +1,4 @@
-@media (min-width: 1300px){
-	div.profile_name{
-        width: 40%;
-        margin-top: calc(0% - 200px);
-        margin-left: calc(50% - 120px);
-        padding-bottom: 50px;
-        border-left: 1px solid #999;
-        padding-top: 40px;
-        padding-left: 20px;
-    }
-    .profile_image{
-        margin-left: 70px;
-    }
-}
 @media (max-width: 1300px){
-    div#postQuestion{
-        margin-top: 30px;
-        padding-top: 4%;
-        width: 60%;
-        padding-left: 5%;
-    }
-    #postQuestion input[type=text], #postQuestion textarea{
-        text-align: center;
-    }
-    #profileDetails{
-        text-align: justify;
-        margin-left: 15%;
-        padding-bottom: 5px;
-        padding-top: 5px;
-        padding-left: 6%;
-    }
-    #prof_image{
-        margin-left: 12%;
-    }
     .stats_card{
         padding-bottom: 3%;
     }
@@ -39,23 +6,11 @@
 @media (max-width: 1000px){
     div#first_question, div#first_answer{
         margin-top: 12%;
-    }
-    #prof_image{
-        margin-left: 9%;
-    }  
+    } 
 }  
 @media (max-width: 850px){
     .stats_card{
         padding-bottom: 6%;
-    }
-    .date{
-        display: none;
-    }
-    .date_small{
-        display: block;
-        float: right;
-        font-size: 0.7em;
-        font-weight: 400;
     }
 }
 @media (min-width:650px){
@@ -65,12 +20,8 @@
     #main{
         margin-left: 5%
     }
-
 }
 @media (max-width: 650px){
-    #prof_image{
-        margin-left: 4%;
-    } 
     .stats_card{
         padding-bottom: 10%;
     } 
@@ -78,10 +29,7 @@
 @media (max-width: 540px){
     div#postQuestion{
         width: 100%;
-    }
-    #prof_image{
-        margin-left: -2%;
-    }   
+    }  
     .stats_card{
         padding-bottom: 20%;
         margin-left: 20%;
@@ -118,10 +66,7 @@
 @media (max-width: 350px){
     div.profile_name{
         padding-left: 15%;
-    }
-    #prof_image{
-        margin-left: -2%;
-    }   
+    } 
     .stats_card{
         padding-bottom: 60%;
         padding-left: 5%;
@@ -140,9 +85,6 @@
         width: 100%;
         padding: 1%;
     }
-}  
-#prof_image{
-    width: auto;
 }
 #main{
     margin-bottom: 3%;
@@ -152,7 +94,7 @@
     width: 90%;
     position: absolute;
 }
-#changePassword, .answers, #userAnswers, #userQuestions{
+#changePassword, .answers, #userAnswers{
     display: none;
 }
 .profile{
@@ -160,21 +102,6 @@
     height: auto;
     margin-left: 25%;
     padding-left: 5%;
-}
-.profile_image{
-    box-shadow: 2px 2px 2px gray;
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-.profile_image img{
-    height: 200px;
-    width: 300px;
-}
-.profile_image img:hover{
-    opacity: 0.8;
-    transition: 0.3s ease;
 }
 
 .profile_name h3:hover{
@@ -207,7 +134,21 @@
 .Q_left{
     margin-left: 10%;
 }
+#postQuestion{
+    margin-top: 30px;
+    padding-top: 4%;
+    width: 60%;
+    padding-left: 5%;
+}
+#profileDetails{
+        text-align: justify;
+        margin-left: 15%;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        padding-left: 6%;
+    }
 #postQuestion input[type=text], textarea{
+    text-align: center;
     font-family: Exo;
     font-weight: 400;
     margin-left: 30px;
@@ -276,19 +217,19 @@ input[type=text]:focus{
     font-size: 30px;
     margin-left: 20px;
     padding: 10px;
+    transition: 0.1s ease;
 }
 .material-icons:hover, .votes:hover, .add:hover, .accept:hover, .delete:hover{
     cursor: pointer;
+    opacity: 0.8;
+    transition: 0.1s ease;
 }
 .answer_card, user_answer_card, .add_comment_card, #postQuestion{
     box-shadow: 1px 1px 3px grey;
     padding: 1%;
     margin: 2%;
 }
-.date{
-    float: right;
-}
-#accepted_answer{
+.accepted_answer{
  color: green;
 }
 .hide_answers{

@@ -13,8 +13,13 @@ function showBlock(el) {
 function showInline(el) {
   document.getElementById(el).style.display = 'inline';
 }
-let my_token = localStorage.getItem('token');
-if (my_token === undefined || my_token === null || my_token === '') {
+const showHideAns = (hideId, answersGiven) => {
+  if (answersGiven > 0) {
+    showInline(hideId);
+  }
+}
+const myToken = localStorage.getItem('token');
+if (myToken === undefined || myToken === null || myToken === '') {
   hide('profileH3');
   showBlock('loginH3');
 } 
@@ -24,59 +29,63 @@ const reload = () => window.location.reload();
 const uName = localStorage.getItem('username')
 
 const divMain = document.getElementById('questions');
-const urlSeg = 'http://localhost:5000/api/v1/';
-let url = urlSeg + 'questions?pages=1';
-let count = 1;
 
 const getEl = id => document.getElementById(id).value;
 const showAlert = message => setTimeout(function () { alert(message); }, 300);
 
-const token = "Bearer " + my_token;
+const token = "Bearer " + myToken;
 
-// Fetch and display all questions
-fetch(url)
-  .then(response => response.json())
-  .then((data) => {
-    return data.map((question) => {
-      const addId = 'add' + count;
-      const hideId = 'hide' + count;
-      const answerId = 'answer' + count;
-      const buttonId = 'button' + count;
-      const contentId = 'content' + count;
-      const spanDeleteId = 'span' + count;
-      const h = `
-          <h2><u>${question.title}</u></h2>
-          <h5>asked by ${question.username}</h5>
-          <p>${question.content}</p>
-          <i class="material-icons" title="View answers" onclick="showBlock('${answerId}'), showInline('${hideId}')"> forum </i> 
-          <span>${question.answers_given}</span>
-          <span class="add" title="Answer this question" onclick="showBlock('${addId}')">&#xff0b;</span>
-          <span id=${spanDeleteId} class="delete" title="Delete answer?" onclick="deleteQst('${question.id}')">&#9986;</span>
-          <span class="hide_answers" id=${hideId} title="Hide Answers" onclick="hide('${answerId}'), hide('${hideId}')">X</span>
-          <div class="add_comment_card" id="${addId}">
-            <input id=${contentId} type="text" placeholder="Answer this question ..."><br><br>
-            <input id=${buttonId} type="button" value="Add" onclick="postAnswer('${question.id}', '${contentId}', '${addId}')">
-            <button title="Cancel" onclick="hide('${addId}')" type="reset">X</button>
-          </div>`;
-      const qDiv = createNode('div');
-      const ansDiv = createNode('div');
-      qDiv.classList.add('question_card');
-      qDiv.innerHTML = h;
-      ansDiv.setAttribute('id', answerId);
-      ansDiv.classList.add('answers');
-      addAnswers(question.id, ansDiv);
-      append(qDiv, ansDiv);
-      append(divMain, qDiv);
-      if (question.username === uName) {
-        showInline(spanDeleteId);
-      }
-      ++count;
+const fetchQuestions = (url) => {
+  let count = 1;
+  fetch(url)
+    .then(response => response.json())
+    .then((data) => {
+      return data.map((question) => {
+        const addId = 'add' + count;
+        const hideId = 'hide' + count;
+        const answerId = 'answer' + count;
+        const buttonId = 'button' + count;
+        const contentId = 'content' + count;
+        const spanDeleteId = 'span' + count;
+        const h = `
+            <h2><u>${question.title}</u></h2>
+            <h5>asked by ${question.username}</h5>
+            <p>${question.content}</p>
+            <i class="material-icons" title="View answers" onclick="showBlock('${answerId}'), showHideAns('${hideId}', '${question.answers_given}')"> forum </i> 
+            <span>${question.answers_given}</span>
+            <span class="add" title="Answer this question" onclick="showBlock('${addId}')">&#xff0b;</span>
+            <span id=${spanDeleteId} class="delete" title="Delete answer?" onclick="deleteQst('${question.id}')">&#9986;</span>
+            <span class="hide_answers" id=${hideId} title="Hide Answers" onclick="hide('${answerId}'), hide('${hideId}')">X</span>
+            <div class="add_comment_card" id="${addId}">
+                <input id=${contentId} type="text" placeholder="Answer this question ..."><br><br>
+                <input id=${buttonId} type="button" value="Add" onclick="postAnswer('${question.id}', '${contentId}', '${addId}')">
+                <button title="Cancel" onclick="hide('${addId}')" type="reset">X</button>
+            </div>`;
+        const qDiv = createNode('div');
+        const ansDiv = createNode('div');
+        qDiv.classList.add('question_card');
+        qDiv.innerHTML = h;
+        ansDiv.setAttribute('id', answerId);
+        ansDiv.classList.add('answers');
+        addAnswers(question.id, ansDiv);
+        append(qDiv, ansDiv);
+        append(divMain, qDiv);
+        if (question.username === uName) {
+          showInline(spanDeleteId);
+        }
+        ++count;
+      })
     })
-  })
-  .catch(error => console.log(error));
+    .catch(error => console.log(error));    
+}
+
+const urlSeg = "http://localhost:5000/api/v1/";
+let url = urlSeg + "questions?pages=1";
+
+fetchQuestions(url);
 
 const addAnswers = (questionId, ansDiv) => {
-  const countAns = 1;
+  let countAns = 1;
   url = urlSeg + 'questions/' + questionId + '/answers';
   fetch(url)
     .then(response => response.json())
@@ -89,23 +98,25 @@ const addAnswers = (questionId, ansDiv) => {
         const answerDiv = createNode('div');
         answerDiv.classList.add('answer_card');
         const c = `
-            <h4><u>@${answer.username}</u></h4>
+            <h4><u>@${answer.username}</u><span title="Accepted answer" class="accepted">&#10003;</span></h4>
             <p>${answer.content}</p>
             <span class="votes" title="upvote">&#8607;</span>
             <span>${answer.upvotes}</span>
             <span class="votes" title="downvote">&#8609;</span>
             <span>${answer.downvotes}</span>
-            <span id="${spanId}" onclick="showBlock('${editId}')" class="editIcon">&#9998;</span>
-            <div class="editForm" id="${editId}">
-              <input id=${editInputId} type="text" value="${answer.content}"><br><br>
-              <input id=${editButton} type="button" value="Update" onclick="editAnswer('${questionId}', '${answer.id}', '${answer.content}')">
-            </div>`; 
+            <span id="${spanId}" onclick="showBlock('${editId}')" class="editIcon" title="Edit answer?">&#9998;</span>
+            <div class="editForm" id=${editId}>
+              <textarea id=${editInputId} type="text">${answer.content}</textarea><br><br>
+              <input id=${editButton} type="button" value="Update" onclick="editAnswer('${questionId}', '${answer.id}', '${editInputId}')">
+              <button title="Cancel" onclick="hide('${editId}')" type="reset">X</button>
+              </div>`; 
         answerDiv.innerHTML = c;
         append(ansDiv, answerDiv);
         hide(spanId);
         if (answer.username === uName) {
           showInline(spanId);
         }
+        ++countAns;
       })
     })
 }
@@ -182,22 +193,29 @@ const logout = () => {
   .catch(error => console.log(error))
 }
 
-const editAnswer = (questionId, answerId, content) => {
-  url = urlSeg + 'questions/' + questionId + 'answers/' + answerId;
+const editAnswer = (questionId, answerId, editInputId) => {
+  const content = getEl(editInputId)
+  console.log(content)
+  url = urlSeg + 'questions/' + questionId + '/answers/' + answerId;
   fetch(url, {
       method: 'PUT',
       headers:{
         Authorization: token,
         'Content-Type': 'application/json'
       },
-      body: { content:content }
+      body: JSON.stringify({ content:content })
   })
   .then(response => response.json())
-  .then(data => showAlert(data.message))
+  .then((data) => {
+      showAlert(data.message)
+      reload();
+    })
 }
 
 const deleteQst = (qid) => {
-  url = urlSeg + 'questions/' + qid;  
+  const res = confirm("Are you sure you want to delete this question?");
+  if (res === true){
+      url = urlSeg + 'questions/' + qid;  
   fetch(url, {
     method: 'DELETE',
     headers: { 'Authorization': token }
@@ -208,4 +226,5 @@ const deleteQst = (qid) => {
       reload();
       // reload screen
     }).catch(error => console.log(error))
+  }   
 }
