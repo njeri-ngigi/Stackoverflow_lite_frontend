@@ -196,3 +196,31 @@ const acceptAnswer = (questionId, answerId) => {
       reload();
   })
 };
+
+const logout = () => {
+  url = urlSeg + 'auth/logout';
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    }
+  })
+    .then((response) => {
+      status = response.status;
+      return response.json();
+    })
+    .then((data) => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      window.location.replace('./index.html');
+      if (status !== 200) {
+        showAlert(data.msg);
+      }
+      else {
+        showAlert(data.message);
+      }
+    })
+    .catch(error => console.log(error))
+}
