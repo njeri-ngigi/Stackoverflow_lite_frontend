@@ -95,13 +95,13 @@ fetch(url, {
 
 const addAnswers = (questionId, ansDiv) => {
   url = urlSeg + 'questions/' + questionId + '/answers';
+  let myCount = 1;
   fetch(url)
     .then(response => response.json())
     .then((data) => {
-      let myCount = 1;
-      console.log(data)
+      count2 = 1
       return data.map((answer) => {
-        const acceptId = "accept" + myCount;
+        const acceptId = 'accept' + myCount + count2;
         const answerDiv = createNode('div');
         answerDiv.classList.add('answer_card');
         const c = `
@@ -118,12 +118,12 @@ const addAnswers = (questionId, ansDiv) => {
           const acceptSpan = document.getElementById(acceptId);
           acceptSpan.classList.add('accepted_answer');
           acceptSpan.setAttribute('title', 'Accepted answer');
-          console.log("I'm accepted!");
         }
-        ++myCount;
+        count2++;
       })
     })
     .catch(error => console.log(error));
+    myCount++;
 };
 
 const deleteQst = (qid) => {
@@ -192,7 +192,6 @@ const acceptAnswer = (questionId, answerId) => {
   })
   .then(response => response.json())
   .then((data) => {
-      console.log(data.message)
       showAlert(data.message);
       reload();
   })
