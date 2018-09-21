@@ -18,15 +18,21 @@
             </div>
             <div class="main" id="questions">
                 <div class="question_card" id="top_question">
-                    <h2 onclick="showBlock('postQuestion')">Post a question</h2>
+                    <h2 id="h2Header" onclick="showBlock('postQuestion')">Post a question?</h2>
                     <div id="postQuestion">
                         <input id="titleQst" type="text" placeholder="Question Title"><br><br>
                         <textarea id="contentQst" placeholder="Question Content"></textarea><br><br>
-                        <input id="postQuestionBtn" type="button" value="Post Question" title="Post Question" onclick="postQuestions(postQuestion)">
+                        <input id="postQuestionBtn" type="button" value="Post Question" title="Post Question" onclick="postQuestions('postQuestion')">
                         <button type="reset" onclick="hide('postQuestion')" title="Cancel">X</button>
                     </div>
                 </div>
-                <script src="../js/fetchData.js"></script>
+                <h3 id="title_h3">Most Recent Questions:</h3>
             </div>
+            <div id="pages_footer">
+                <span class="pages active">1</span>
+                <span class="pages">2</span>
+                <span class="pages">3</span>
+            </div>
+            <script src="../js/fetchData.js"></script>
         </body>
     </html>

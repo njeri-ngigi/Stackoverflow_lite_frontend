@@ -37,7 +37,8 @@ function showInline(el) {
   document.getElementById(el).style.display = "inline";
 }
 
-// document.getElementById('username').innerHTML = localStorage.getItem('username');
+const username = localStorage.getItem('username');
+document.getElementById('username').innerHTML = `@${username}`;
 
 const divUserQuestions = document.getElementById('userQuestions');
 const divUserAnswers = document.getElementById('userAnswers');
@@ -47,7 +48,11 @@ let count = 1;
 
 const getEl = id => document.getElementById(id).value;
 const showAlert = message => setTimeout(function () { alert(message); }, 300);
-
+const showHideAns = (hideId, answersGiven) => {
+  if (answersGiven > 0) {
+    showInline(hideId);
+  }
+}
 let token = localStorage.getItem('token');
 token = "Bearer " + token;
 
@@ -66,7 +71,7 @@ fetch(url, {
       const html = `
           <h2><u>${question.title}</u></h2>
           <p>${question.content}</p>
-          <i class="material-icons" title="View answers" onclick="showBlock('${answerId}'), showInline('${hideId}')"> forum </i> 
+          <i class="material-icons" title="View answers" onclick="showBlock('${answerId}'), showHideAns('${hideId}', '${question.answers}')"> forum </i> 
           <span>${question.answers}</span>
           <span id=${qid} onclick="deleteQst('${qid}')" class="delete" title="Delete question?">&#9986;</span>
           <span class="hide_answers" id=${hideId} title="Hide Answers" onclick="hide('${answerId}'), hide('${hideId}')">X</span>
@@ -74,7 +79,9 @@ fetch(url, {
       const userQDiv = createNode('div');
       const userAnsDiv = createNode('div');
       userQDiv.classList.add('question_card');
-      userQDiv.setAttribute('id', 'first_question');
+      if (count === 1) {
+        userQDiv.setAttribute('id', 'first_question');
+      }
       userQDiv.innerHTML = html;
       userAnsDiv.setAttribute('id', answerId);
       userAnsDiv.classList.add('answers');
@@ -91,57 +98,64 @@ const addAnswers = (questionId, ansDiv) => {
   fetch(url)
     .then(response => response.json())
     .then((data) => {
+      let myCount = 1;
+      console.log(data)
       return data.map((answer) => {
+        const acceptId = "accept" + myCount;
         const answerDiv = createNode('div');
         answerDiv.classList.add('answer_card');
-        const span = createNode('span');
         const c = `
             <h4><u>@${answer.username}</u></h4>
             <p>${answer.content}</p>
             <span class="votes" title="upvote">&#8607;</span>
             <span>${answer.upvotes}</span>
             <span class="votes" title="downvote">&#8609;</span>
-            <span>${answer.downvotes}</span>`;
-        span.innerHTML = '&#10003;';
-        span.setAttribute('title', 'Accept answer?');
-        span.classList.add('accept')
-        if (answer.accepted) {
-          span.setAttribute('id', 'accepted_answer');
-        }
+            <span>${answer.downvotes}</span>
+            <span class="accept" id="${acceptId}" title="Accept answer?" onclick="acceptAnswer('${questionId}', '${answer.id}')">&#10003;</span>`;
         answerDiv.innerHTML = c;
-        append(answerDiv, span);
         append(ansDiv, answerDiv);
+        if (answer.accepted) {
+          const acceptSpan = document.getElementById(acceptId);
+          acceptSpan.classList.add('accepted_answer');
+          acceptSpan.setAttribute('title', 'Accepted answer');
+          console.log("I'm accepted!");
+        }
+        ++myCount;
       })
     })
     .catch(error => console.log(error));
 };
 
 const deleteQst = (qid) => {
-  url = urlSeg + 'questions/' + qid;  
-  fetch(url, {
-    method: 'DELETE',
-    headers: { 'Authorization': token }
-  })
-    .then(response => response.json())
-    .then((data) => {
-      showAlert(data.message);
-      reload();
-      // reload screen
-    }).catch(error => console.log(error))
-}
+  const res = confirm('Are you sure you want to delete this question?');
+  if (res === true) {
+    url = urlSeg + 'questions/' + qid;
+    fetch(url, {
+      method: 'DELETE',
+      headers: { 'Authorization': token }
+    })
+      .then(response => response.json())
+      .then((data) => {
+        showAlert(data.message);
+        reload();
+        // reload screen
+      })
+      .catch(error => console.log(error))
+  }
+};
 
 const postQuestions = (divId) => {
   const title = getEl('qTitle');
   const content = getEl('qContent');
   url = urlSeg + 'questions/';
-  const data = {
+  const myData = {
     title: title,
     content: content
   }
-  postStuff(url, data, divId);
+  postStuff(url, myData, divId);
 }
-
-const postStuff = (myUrl, data, divId) => {
+let status = ''
+const postStuff = (myUrl, myData, divId) => {
   token = localStorage.getItem('token');
   token = "Bearer " + token;
   fetch(myUrl, {
@@ -150,7 +164,7 @@ const postStuff = (myUrl, data, divId) => {
       'Content-Type': 'application/json',
       'Authorization': token
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(myData)
   })
     .then((response) =>{
       status = response.status;
@@ -164,4 +178,22 @@ const postStuff = (myUrl, data, divId) => {
       }
     })
     .catch(error => console.log(error))
+};
+
+const acceptAnswer = (questionId, answerId) => {
+  url = urlSeg + "questions/" + questionId + '/answers/' + answerId
+  fetch(url, {
+      method: 'PUT',
+      headers: {
+          Authorization: token,
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+  })
+  .then(response => response.json())
+  .then((data) => {
+      console.log(data.message)
+      showAlert(data.message);
+      reload();
+  })
 };
