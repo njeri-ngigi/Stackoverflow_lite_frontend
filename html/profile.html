@@ -27,7 +27,7 @@
                             <form>
                                 <input id="qTitle" type="text" placeholder="Question Title"><br><br>
                                 <textarea id="qContent" placeholder="Question Content"></textarea><br><br>
-                                <input type="button" value="Post Question" onclick="postQuestions(), showPostQuestion('profileDetails')">
+                                <input type="button" value="Post Question" onclick="postQuestions('postQuestion'), showPostQuestion('profileDetails')">
                                 <button onclick="showPostQuestion('profileDetails')" title="Cancel">X</button>
                             </form>
                         </div>
@@ -40,7 +40,7 @@
                     </div>
                     
                     <div class="Q_card" onclick="showQuestionCards('userAnswers')">
-                        <h3 id="answer_count">2</h3>
+                        <h3 id="answer_count"></h3>
                         <p>Answers</p>
                     </div>
                 </div>
@@ -48,46 +48,6 @@
                 <div id="userQuestions">
                 </div>
                 <div id="userAnswers">
-                    <div class="question_card" id="first_answer">
-                        <h2>
-                            <u>Question Title</u>
-                        </h2>
-                        <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea. Would you take use concrete
-                            to make the tunnel or would it be more prudent to use a PVC pipe through the water?
-                        </p>
-                        <div class="user_answer_card">
-                            <h4>
-                                <u>@njery</u>
-                            </h4>
-                            <p>
-                                PVC pip wouldn't corrode as much
-                            </p>
-                            <span class="votes">&#8607;</span>
-                            <span>14</span>
-                            <span class="votes">&#8609;</span>
-                            <span>2</span> 
-                        </div>
-                    </div>
-                    <div class="question_card">
-                        <h2>
-                            <u>Question Title</u>
-                        </h2>
-                        <p>Other question. My emulator on Android Studio is really slow. 
-                            Any recommendation on other types I could use?
-                        </p>
-                        <div class="user_answer_card">
-                            <h4>
-                                <u>@njery</u>
-                            </h4>
-                            <p>
-                                Try using GenyMotion. Its fast, lightweight and very efficient.
-                            </p>
-                            <span class="votes">&#8607;</span>
-                            <span>31</span>
-                            <span class="votes">&#8609;</span>
-                            <span>0</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         <script src="../js/profile.js"></script>

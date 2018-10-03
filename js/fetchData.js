@@ -4,14 +4,14 @@ function createNode(element) {
 function append(parent, el) {
   return parent.appendChild(el);
 }
-function hide(el) {
-  document.getElementById(el).style.display = 'none';
+function hide(elementId) {
+  document.getElementById(elementId).style.display = 'none';
 }
-function showBlock(el) {
-  document.getElementById(el).style.display = 'block';
+function showBlock(elementId) {
+  document.getElementById(elementId).style.display = 'block';
 }
-function showInline(el) {
-  document.getElementById(el).style.display = 'inline';
+function showInline(elementId) {
+  document.getElementById(elementId).style.display = 'inline';
 }
 const showHideAns = (hideId, answersGiven) => {
   if (answersGiven > 0) {
@@ -25,21 +25,28 @@ if (myToken === undefined || myToken === null || myToken === '') {
 } 
 
 const reload = () => window.location.reload();
-
-const uName = localStorage.getItem('username')
-
-const divMain = document.getElementById('questions');
-
 const getEl = id => document.getElementById(id).value;
 const showAlert = message => setTimeout(function () { alert(message); }, 300);
 
+const uName = localStorage.getItem("username");
+const divMain = document.getElementById("questions");
 const token = "Bearer " + myToken;
+const urlSeg = "http://localhost:5000/api/v1/";
+let url = urlSeg + "questions?pages=1";
+let firstCountAns = 1;
 
 const fetchQuestions = (url) => {
   let count = 1;
   fetch(url)
     .then(response => response.json())
     .then((data) => {
+      if (data.length < 1) {
+        emptyHtml = `
+        <div class="emptyDiv"><p>sad face emoji</p></div>
+        `;
+        divMain.innerHTML = emptyHtml;
+        return;
+      }
       return data.map((question) => {
         const addId = 'add' + count;
         const hideId = 'hide' + count;
@@ -47,7 +54,7 @@ const fetchQuestions = (url) => {
         const buttonId = 'button' + count;
         const contentId = 'content' + count;
         const spanDeleteId = 'span' + count;
-        const h = `
+        const divHtml = `
             <h2><u>${question.title}</u></h2>
             <h5>asked by ${question.username}</h5>
             <p>${question.content}</p>
@@ -64,7 +71,7 @@ const fetchQuestions = (url) => {
         const qDiv = createNode('div');
         const ansDiv = createNode('div');
         qDiv.classList.add('question_card');
-        qDiv.innerHTML = h;
+        qDiv.innerHTML = divHtml;
         ansDiv.setAttribute('id', answerId);
         ansDiv.classList.add('answers');
         addAnswers(question.id, ansDiv);
@@ -73,52 +80,59 @@ const fetchQuestions = (url) => {
         if (question.username === uName) {
           showInline(spanDeleteId);
         }
-        ++count;
+        count += 1;
       })
     })
     .catch(error => console.log(error));    
 }
 
-const urlSeg = "http://localhost:5000/api/v1/";
-let url = urlSeg + "questions?pages=1";
+
 
 fetchQuestions(url);
 
 const addAnswers = (questionId, ansDiv) => {
-  let countAns = 1;
+  let secondAnsCount = 1;
   url = urlSeg + 'questions/' + questionId + '/answers';
   fetch(url)
     .then(response => response.json())
     .then((data) => {
       return data.map((answer) => {
-        const spanId = 'ansSpan' + countAns;
-        const editId = 'edit' + countAns;
-        const editInputId = 'input' + countAns;
-        const editButton = 'editBtn' + countAns;
+        const acceptId = "accept" + firstCountAns + secondAnsCount; 
+        const spanId = 'ansSpan' + firstCountAns + secondAnsCount;
+        const editId = 'edit' + firstCountAns + secondAnsCount;
+        const editInputId = 'input' + firstCountAns + secondAnsCount;
+        const editButton = 'editBtn' + firstCountAns + secondAnsCount;
+        const upvoteId = 'upvote' + firstCountAns + secondAnsCount;
+        const downvoteId = 'downvote' + firstCountAns + secondAnsCount;
         const answerDiv = createNode('div');
         answerDiv.classList.add('answer_card');
-        const c = `
-            <h4><u>@${answer.username}</u><span title="Accepted answer" class="accepted">&#10003;</span></h4>
+        const ansDivHtml = `
+            <h4><u>@${answer.username}</u><span id=${acceptId} class="accepted" title="Accepted answer">&#10003;</span></h4>
             <p>${answer.content}</p>
-            <span class="votes" title="upvote">&#8607;</span>
-            <span>${answer.upvotes}</span>
-            <span class="votes" title="downvote">&#8609;</span>
-            <span>${answer.downvotes}</span>
+            <span class="votes" title="upvote" onclick="upOrDownVote('${questionId}', '${answer.id}', 'upvote', '${upvoteId}', '${downvoteId}')">&#8607;</span>
+            <span id=${upvoteId}>${answer.upvotes}</span>
+            <span class="votes" title="downvote" onclick="upOrDownVote('${questionId}', '${answer.id}', 'downvote','${upvoteId}', '${downvoteId}')">&#8609;</span>
+            <span id=${downvoteId}>${answer.downvotes}</span>
             <span id="${spanId}" onclick="showBlock('${editId}')" class="editIcon" title="Edit answer?">&#9998;</span>
             <div class="editForm" id=${editId}>
               <textarea id=${editInputId} type="text">${answer.content}</textarea><br><br>
               <input id=${editButton} type="button" value="Update" onclick="editAnswer('${questionId}', '${answer.id}', '${editInputId}')">
               <button title="Cancel" onclick="hide('${editId}')" type="reset">X</button>
               </div>`; 
-        answerDiv.innerHTML = c;
+        answerDiv.innerHTML = ansDivHtml;
         append(ansDiv, answerDiv);
+        if (answer.accepted) {
+          showInline(acceptId);
+        }
         hide(spanId);
         if (answer.username === uName) {
           showInline(spanId);
         }
-        ++countAns;
+        secondAnsCount += 1;
       })
     })
+    .catch(error => console.log(error))
+  firstCountAns += 1;
 }
 
 const postQuestions = (divId) => {
@@ -228,3 +242,63 @@ const deleteQst = (qid) => {
     }).catch(error => console.log(error))
   }   
 }
+
+const upOrDownVote = (questionId, answerId, vote, up, down) => {
+  url = urlSeg + "questions/"+ questionId + "/answers/" + answerId + "/" + vote;
+  if (token !== undefined){
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Authorization': token }
+    })
+      .then(response => response.json())
+      .then((data) => {
+        document.getElementById(up).innerHTML = data.upvotes
+        document.getElementById(down).innerHTML = data.downvotes
+        showAlert(data.message);
+      })
+      .catch(error => console.log(error))
+  }
+  else {
+    showAlert("Login to vote")
+  }
+  
+}
+let pageCount = 1;
+const navigate = (action) => {
+  let currPage = document.getElementById("curr_page");
+  if (action === 'prev') {
+    pageCount -= 1;
+    if (pageCount < 1) {
+      pageCount = 1;
+      return;
+    }
+  }
+  if (action === 'next') {
+    pageCount += 1;
+  }
+  currPage.innerHTML = pageCount;
+  divMain.innerHTML = "";
+  const display = document.getElementById('most_answers').style.display
+  console.log(display)
+  url = urlSeg + "questions?pages=" + pageCount;
+  if (display === 'block'){
+    url = urlSeg + "questions?query=most_answers&pages=" + pageCount;
+  }  
+  fetchQuestions(url);
+}
+
+const showQs = (h3Id) => {
+  if (h3Id === 'most_answers'){
+    url = urlSeg + "questions?pages=1&query=most_answers";
+    hide('recent');
+    showBlock('most_answers')
+  }
+  else{
+    url = urlSeg + "questions?pages=1";
+    hide('most_answers');
+    showBlock('recent');
+  }
+  document.getElementById('questions').innerHTML = ""
+  fetchQuestions(url);
+}
+

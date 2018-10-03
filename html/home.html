@@ -16,7 +16,7 @@
                 <h3 id="profileH3"><a href="profile.html">YOUR PROFILE</a><span onclick="logout()">LOG OUT</span></h3>
                 <h3 id="loginH3"><a href="index.html">Login | Signup</a></h3>
             </div>
-            <div class="main" id="questions">
+            <div class="main">
                 <div class="question_card" id="top_question">
                     <h2 id="h2Header" onclick="showBlock('postQuestion')">Post a question?</h2>
                     <div id="postQuestion">
@@ -26,12 +26,15 @@
                         <button type="reset" onclick="hide('postQuestion')" title="Cancel">X</button>
                     </div>
                 </div>
-                <h3 id="title_h3">Most Recent Questions:</h3>
+                <h3 class="h3" id="recent" title="Show questions with most answers?" onclick="showQs('most_answers')">Most Recent Questions:</h3>
+                <h3 class="h3" id="most_answers" title="Show most recent questions?" onclick="showQs('recent')">Questions with most answers:</h3>
+                <a href="search.html" class="h3" id="search"><span  >Search</span></a>
+                <div id="questions"></div>
             </div>
             <div id="pages_footer">
-                <span class="pages active">1</span>
-                <span class="pages">2</span>
-                <span class="pages">3</span>
+                <span class="pages" onclick="navigate('prev')">PREV</span>
+                <span class="pages active" id="curr_page">1</span>
+                <span class="pages" onclick="navigate('next')">NEXT</span>
             </div>
             <script src="../js/fetchData.js"></script>
         </body>

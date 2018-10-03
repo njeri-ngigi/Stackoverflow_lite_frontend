@@ -14,10 +14,26 @@
         font-size: 0.5em;
     }
 }
-#title_h3{
+.h3{
     margin-left: 13%;
     padding: 1%;
     text-decoration: underline;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+.h3:hover{
+    color: #FF4500;
+    opacity: 0.9;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: 0.5s ease;
+}
+#most_answers{
+    display: none;
+}
+#search{
+    text-decoration: none;
+    color: black;
 }
 .question_card, #pages_footer{
     height: auto;
@@ -33,7 +49,7 @@
 .question_card{
     box-shadow: 1px 1px 3px grey;
 }
-.pages:hover{
+.pages:hover, #close:hover{
     background-color: lavender;
     cursor: pointer;
 }
@@ -140,7 +156,53 @@ i:hover, .votes:hover, .add:hover, .editIcon:hover, .delete:hover {
     padding: 3%;
     margin-right: 2%;
 }
-
 .accepted{
     color: green;
+    display: none;
+}
+.emptyDiv, .empty{
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+}
+.emptyDiv, #first_empty{
+    padding-top: 10%;
+        
+}
+.emptyDiv{
+    height: 25%;
+}
+#search_title{
+    width: 50%;
+}
+#search_button{
+    width: 100px;
+    transition: 0.5s ease;
+}
+#searchMain{
+    padding-top: 50px;
+}
+
+#close{
+    float: right;
+    text-align: center;
+    width: 70px;
+    height: auto;
+    border-radius: 5%;
+    color: darkorange;
+    border: 1px solid darkorange;
+    margin-right: 50px;
+}
+.links{
+    font-size: 1.1em;
+    padding: 5%;
+    transition: 0.2s ease;
+    text-decoration: underline;
+}
+.links:hover{
+    color: darkorange;
+    opacity: 0.9;
+    transition: 0.1s ease;
+    text-decoration: none;
+    cursor: pointer;
 }

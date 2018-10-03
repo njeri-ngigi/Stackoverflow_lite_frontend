@@ -147,8 +147,7 @@
         padding-top: 5px;
         padding-left: 6%;
     }
-#postQuestion input[type=text], textarea{
-    text-align: center;
+input[type=text], textarea{
     font-family: Exo;
     font-weight: 400;
     margin-left: 30px;
@@ -158,11 +157,11 @@
     width: 70%;
     margin-top: 10px;
 }
-#postQuestion input[type=button]{
+input[type=button]{
     width: 45%;
     margin-left: 30px;
 }
-#postQuestion input[type=button], #postQuestion button{
+input[type=button], button{
     padding: 10px;
     height: 40px;
     margin-bottom: 10px;
@@ -213,13 +212,13 @@ input[type=text]:focus{
 .question_card h2:hover, .question_card h4:hover, i{
     cursor: pointer;
 }
-.material-icons, .votes, .add, .accept{
+.material-icons, .votes, .add, .accept, .editIcon{
     font-size: 30px;
     margin-left: 20px;
     padding: 10px;
     transition: 0.1s ease;
 }
-.material-icons:hover, .votes:hover, .add:hover, .accept:hover, .delete:hover{
+.material-icons:hover, .votes:hover, .add:hover, .accept:hover, .delete:hover, .editIcon:hover{
     cursor: pointer;
     opacity: 0.8;
     transition: 0.1s ease;
@@ -248,4 +247,7 @@ input[type=text]:focus{
     font-size: 1.5em;
     margin-left: 10px;
     padding: 10px;
+}
+.editForm{
+    display: none;
 }

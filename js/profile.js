@@ -42,6 +42,7 @@ document.getElementById('username').innerHTML = `@${username}`;
 
 const divUserQuestions = document.getElementById('userQuestions');
 const divUserAnswers = document.getElementById('userAnswers');
+const questionCount = document.getElementById('question_count');
 const urlSeg = "http://localhost:5000/api/v1/";
 let url = urlSeg + 'users/questions';
 let count = 1;
@@ -56,6 +57,7 @@ const showHideAns = (hideId, answersGiven) => {
 let token = localStorage.getItem('token');
 token = "Bearer " + token;
 
+// fetch user questions
 fetch(url, {
   method: 'GET',
   headers: { Authorization: token }
@@ -63,8 +65,9 @@ fetch(url, {
   .then(response => response.json())
   .then((data) => {
     const qst = data.length;
-    document.getElementById('question_count').innerHTML = qst;
+    questionCount.innerHTML = qst;
     return data.map((question) => {
+      const aDivId = 'aDiv' + count;
       const hideId = 'hide' + count;
       const answerId = 'answer' + count;
       const qid = question.question_id;
@@ -73,60 +76,138 @@ fetch(url, {
           <p>${question.content}</p>
           <i class="material-icons" title="View answers" onclick="showBlock('${answerId}'), showHideAns('${hideId}', '${question.answers}')"> forum </i> 
           <span>${question.answers}</span>
-          <span id=${qid} onclick="deleteQst('${qid}')" class="delete" title="Delete question?">&#9986;</span>
+          <span id=${qid} onclick="deleteQst('${qid}', '${aDivId}')" class="delete" title="Delete question?">&#9986;</span>
           <span class="hide_answers" id=${hideId} title="Hide Answers" onclick="hide('${answerId}'), hide('${hideId}')">X</span>
       `;
       const userQDiv = createNode('div');
       const userAnsDiv = createNode('div');
       userQDiv.classList.add('question_card');
+      userQDiv.setAttribute('id', aDivId);
       if (count === 1) {
         userQDiv.setAttribute('id', 'first_question');
       }
       userQDiv.innerHTML = html;
       userAnsDiv.setAttribute('id', answerId);
       userAnsDiv.classList.add('answers');
-      addAnswers(qid, userAnsDiv);
+      addAnswers(qid, answerId);
       append(userQDiv, userAnsDiv);
       append(divUserQuestions, userQDiv);
-      ++count;
+      count += 1;
     })
   })
   .catch(error => console.log(error));
 
-const addAnswers = (questionId, ansDiv) => {
+// fetch user answers
+let count2 = 1;
+url = urlSeg + 'users/answers';
+fetch(url, {
+  method: 'GET',
+  headers: { Authorization: token }
+})
+  .then(response => response.json())
+  .then((data) => {
+    document.getElementById('answer_count').innerHTML = data.count;
+    const answers = data.answers;
+    return answers.map((question) => {
+      const hideId = 'hide2' + count2;
+      const answerId = 'answer2' + count2;
+      const html = `
+          <h2><u>${question.title}</u></h2>
+          <h5>asked by ${question.username}</h5>
+          <p>${question.content}</p>
+          <i class="material-icons" title="View answers" onclick="showBlock('${answerId}'), showHideAns('${hideId}', '${question.answers_count}')"> forum </i> 
+          <span>${question.answers_count}</span>
+          <span class="hide_answers" id=${hideId} title="Hide Answers" onclick="hide('${answerId}'), hide('${hideId}')">X</span>
+      `;
+      const userQDiv = createNode('div');
+      const userAnsDiv = createNode('div');
+      userQDiv.classList.add('question_card');
+      if (count2 === 1) {
+        userQDiv.setAttribute('id', 'first_answer');
+      }
+
+      userQDiv.innerHTML = html;
+      userAnsDiv.setAttribute('id', answerId);
+      userAnsDiv.classList.add('answers');
+      append(userQDiv, userAnsDiv);
+      append(divUserAnswers, userQDiv);
+      // add answers
+      const allAnswers = question.answers;
+      let count21 = 1;
+      allAnswers.map((answer) => {
+        const contentId = 'content' + count21;
+        const editSpanId = 'editSpan' + count21;
+        const editFormId = 'editForm' + count21;
+        const editInputId = 'editInput' + count21;
+        const editButtonId = 'editButton' + count21;
+        const answerDiv = createNode('div');
+        answerDiv.classList.add('answer_card');
+        const ansDivHtml = `
+              <h4><u>@${answer.username}</u></h4>
+              <p id=${contentId}>${answer.content}</p>
+              <span class="votes" title="upvote">&#8607;</span>
+              <span>${answer.upvotes}</span>
+              <span class="votes" title="downvote">&#8609;</span>
+              <span>${answer.downvotes}</span>
+              <span id="${editSpanId}" onclick="showBlock('${editFormId}')" class="editIcon" title="Edit answer?">&#9998;</span>
+              <div class="editForm" id=${editFormId}>
+                <textarea id=${editInputId} type="text">${answer.content}</textarea><br><br>
+                <input id=${editButtonId} type="button" value="Update" onclick="editAnswer('${question.id}', '${answer.id}', '${editInputId}', '${contentId}', '${editFormId}')">
+                <button title="Cancel" onclick="hide('${editFormId}')" type="reset">X</button>
+                </div>`;
+        answerDiv.innerHTML = ansDivHtml;
+        append(userAnsDiv, answerDiv);
+        if (answer.accepted) {
+          const acceptSpan = createNode('span');
+          acceptSpan.innerHTML = '&#10003;';
+          acceptSpan.setAttribute('title', 'Accepted answer')
+          acceptSpan.classList.add('accept');
+          acceptSpan.classList.add('accepted_answer');
+          append(answerDiv, acceptSpan);
+        }
+        count21 += 1;
+      })
+      
+      count2 += 1;
+    });
+  })
+  .catch(error => console.log(error));
+
+const addAnswers = (questionId, answerDivId) => {
   url = urlSeg + 'questions/' + questionId + '/answers';
   let myCount = 1;
   fetch(url)
     .then(response => response.json())
     .then((data) => {
-      count2 = 1
+      let count12 = 1;
+      const mainAnsDiv = document.getElementById(answerDivId);
       return data.map((answer) => {
-        const acceptId = 'accept' + myCount + count2;
+        const acceptId = 'accept' + myCount + count12;
         const answerDiv = createNode('div');
         answerDiv.classList.add('answer_card');
-        const c = `
+        const divAnsHtml = `
             <h4><u>@${answer.username}</u></h4>
             <p>${answer.content}</p>
             <span class="votes" title="upvote">&#8607;</span>
             <span>${answer.upvotes}</span>
             <span class="votes" title="downvote">&#8609;</span>
             <span>${answer.downvotes}</span>
-            <span class="accept" id="${acceptId}" title="Accept answer?" onclick="acceptAnswer('${questionId}', '${answer.id}')">&#10003;</span>`;
-        answerDiv.innerHTML = c;
-        append(ansDiv, answerDiv);
+            <span class="accept" id="${acceptId}" title="Accept answer?" onclick="acceptAnswer('${questionId}', '${answer.id}', '${answerDivId}', '${myCount}')">&#10003;</span>`;
+        answerDiv.innerHTML = divAnsHtml;
+        append(mainAnsDiv, answerDiv);
         if (answer.accepted) {
           const acceptSpan = document.getElementById(acceptId);
           acceptSpan.classList.add('accepted_answer');
           acceptSpan.setAttribute('title', 'Accepted answer');
         }
-        count2++;
+        count12 += 1;
       })
     })
     .catch(error => console.log(error));
-    myCount++;
+  myCount += 1;
 };
 
-const deleteQst = (qid) => {
+const deleteQst = (qid, childId) => {
   const res = confirm('Are you sure you want to delete this question?');
   if (res === true) {
     url = urlSeg + 'questions/' + qid;
@@ -136,9 +217,7 @@ const deleteQst = (qid) => {
     })
       .then(response => response.json())
       .then((data) => {
-        showAlert(data.message);
         reload();
-        // reload screen
       })
       .catch(error => console.log(error))
   }
@@ -156,13 +235,11 @@ const postQuestions = (divId) => {
 }
 let status = ''
 const postStuff = (myUrl, myData, divId) => {
-  token = localStorage.getItem('token');
-  token = "Bearer " + token;
   fetch(myUrl, {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'Authorization': token
+      Authorization: token,
     },
     body: JSON.stringify(myData)
   })
@@ -180,7 +257,7 @@ const postStuff = (myUrl, myData, divId) => {
     .catch(error => console.log(error))
 };
 
-const acceptAnswer = (questionId, answerId) => {
+const acceptAnswer = (questionId, answerId, answerDivId, myCount) => {
   url = urlSeg + "questions/" + questionId + '/answers/' + answerId
   fetch(url, {
       method: 'PUT',
@@ -192,10 +269,42 @@ const acceptAnswer = (questionId, answerId) => {
   })
   .then(response => response.json())
   .then((data) => {
-      showAlert(data.message);
-      reload();
+      document.getElementById(answerDivId).innerHTML = "";
+      fetchSingleQuestion(questionId, answerDivId, myCount);
   })
+  .catch(error => console.log(error))
 };
+
+const fetchSingleQuestion = (questionId, answerDivId, myCount) => {
+  url = urlSeg + "questions/" + questionId;
+  fetch(url)
+  .then(response => response.json())
+  .then((data) => {
+    answers = data.answers
+    let count12 = 1;
+    return answers.map((answer) => {
+      const acceptId = 'accept' + myCount + count12;
+      const answerDiv = createNode('div');
+      answerDiv.classList.add('answer_card');
+      const divAnsHtml = `
+            <h4><u>@${answer.username}</u></h4>
+            <p>${answer.content}</p>
+            <span class="votes" title="upvote">&#8607;</span>
+            <span>${answer.upvotes}</span>
+            <span class="votes" title="downvote">&#8609;</span>
+            <span>${answer.downvotes}</span>
+            <span class="accept" id="${acceptId}" title="Accept answer?" onclick="acceptAnswer('${questionId}', '${answer.id}', '${answerDivId}', '${myCount}')">&#10003;</span>`;
+      answerDiv.innerHTML = divAnsHtml;
+      append(document.getElementById(answerDivId), answerDiv);
+      if (answer.accepted) {
+        const acceptSpan = document.getElementById(acceptId);
+        acceptSpan.classList.add('accepted_answer');
+        acceptSpan.setAttribute('title', 'Accepted answer');
+      }
+      count12 += 1;
+    })
+  })
+}
 
 const logout = () => {
   url = urlSeg + 'auth/logout';
@@ -221,6 +330,25 @@ const logout = () => {
       else {
         showAlert(data.message);
       }
+    })
+    .catch(error => console.log(error))
+}
+
+const editAnswer = (questionId, answerId, editInputId, divId, editFormId) => {
+  const content = getEl(editInputId)
+  url = urlSeg + 'questions/' + questionId + '/answers/' + answerId;
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      Authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ content: content })
+  })
+    .then(response => response.json())
+    .then((data) => {
+      document.getElementById(divId).innerHTML = content;
+      hide(editFormId);
     })
     .catch(error => console.log(error))
 }
