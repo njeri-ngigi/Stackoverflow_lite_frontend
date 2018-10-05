@@ -5,7 +5,6 @@
             <link rel="stylesheet" type="text/css" href="../css/home.css">
             <link rel="stylesheet" type="text/css" href="../css/common.css">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <script src="../js/home.js"></script>
             <title>Stackoverflow-lite Home</title>
         </head>
         <body>
@@ -14,148 +13,30 @@
                 <div>STACKOVERFLOW |
                     <span>Lite</span>
                 </div>
-                <h3><a  href="profile.html">YOUR PROFILE</a><span><a href="index.html">LOG OUT</a></span></h3>
-                
+                <h3 id="profileH3"><a href="profile.html">YOUR PROFILE</a><span onclick="logout()">LOG OUT</span></h3>
+                <h3 id="loginH3"><a href="index.html">Login | Signup</a></h3>
             </div>
             <div class="main">
                 <div class="question_card" id="top_question">
-                    <h2 onclick="showAddComment('postQuestion')">Post a question</h2>
+                    <h2 id="h2Header" onclick="showBlock('postQuestion')">Post a question?</h2>
                     <div id="postQuestion">
-                        <input type="text" placeholder="Question Title"><br><br>
-                        <textarea placeholder="Question Content"></textarea><br><br>
-                        <input type="button" value="Post Question" title="Post Question" onclick="hideAddComment('postQuestion')">
-                        <button onclick="hideAddComment('postQuestion')" title="Cancel">X</button>
+                        <input id="titleQst" type="text" placeholder="Question Title"><br><br>
+                        <textarea id="contentQst" placeholder="Question Content"></textarea><br><br>
+                        <input id="postQuestionBtn" type="button" value="Post Question" title="Post Question" onclick="postQuestions('postQuestion')">
+                        <button type="reset" onclick="hide('postQuestion')" title="Cancel">X</button>
+                        <div class="error" id="q_error"></div>
                     </div>
                 </div>
-                <div class="question_card">
-                    <h2><u>Question Title</u></h2>
-                    <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea.
-                        Would you take use concrete to make the tunnel or would it be more prudent to use a PVC pipe through the water?
-                    </p>
-                    <i class="material-icons" title="View answers" onclick="displayComments('answers1')"> forum </i> 
-                    <span> 3 </span>
-                    <span class="add" title="Answer this question" onclick="showAddComment('add1')">&#xff0b;</span>
-                    <span class="hide_answers" id="hide1" title="Hide Answers" onclick="hideAddComment('answers1'), hideAddComment('hide1')">X</span>
-                    <span class="date">13:00:56 4<sup>th</sup>-Aug-2018</span>
-                    <span class="date_small">13:00 <br> 04-08-18</span>
-                    <div class="add_comment_card" id="add1">
-                        <input type="text" placeholder="Answer this question ..."><br><br>
-                        <input type="button" value="Add" onclick="hideAddComment('add1')">
-                        <button onclick="hideAddComment('add1')" title="Cancel">X</button>
-                    </div>
-
-                    <div id="answers1" class="answers">
-                        <div class="answer_card">
-                            <h4><u>@jay</u></h4>
-                            <p>
-                                No. Wouldn't you rather just take a ship across the sea? That sounds way more reasonable.
-                            </p>
-                            <span class="votes">&#8607;</span>
-                            <span>4</span>
-                            <span class="votes">&#8609;</span>
-                            <span>7</span>
-
-                        </div>
-
-                        <div class="answer_card">
-                            <h4>
-                                <u>@lucy-o</u>
-                            </h4>
-                            <p>
-                                Take a flight. Its faster.
-                            </p>
-                            
-                            <span class="votes">&#8607;</span>
-                            <span>1</span>
-                            <span class="votes">&#8609;</span>
-                            <span>0</span>
-                        </div>
-                        <div class="answer_card">
-                            <h4>
-                                <u>@karen</u>
-                            </h4>
-                            <p>
-                                You could just not do that
-                            </p>
-                            
-                            <span class="votes">&#8607;</span>
-                            <span>0</span>
-                            <span class="votes">&#8609;</span>
-                            <span>0</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question_card">
-                    <h2>
-                        <u>Question2 Title</u>
-                    </h2>
-                    <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea. Would you take use concrete
-                        to make the tunnel or would it be more prudent to use a PVC pipe through the water?
-                    </p>
-                    <i class="material-icons" title="View answers" onclick="displayComments('answers2')"> forum </i>
-                    <span>0</span>
-                    <span class="add" title="Answer this question" onclick="showAddComment('add2')">&#xff0b;</span>
-                    <span class="hide_answers" id="hide2" title="Hide Answers" onclick="hideAddComment('answers2'), hideAddComment('hide2')">X</span>
-                    <span class="date">01:44:12 24<sup>th</sup>-July-2018</span>
-                    <span class="date_small">13:00 <br> 04-08-18</span>
-
-                    <div class="add_comment_card" id="add2">
-                        <input type="text" placeholder="Answer this question ..."><br><br>
-                        <input type="button" value="Add" onclick="hideAddComment('add2')">
-                        <button onclick="hideAddComment('add2')" title="Cancel">X</button>
-                    </div>
-
-                    <div class="answers" id="answers2"></div>
-                    
-                </div>
-
-                <div class="question_card">
-                    <h2>
-                        <u>Question3 Title</u>
-                    </h2>
-                    <p>This is my question. If you wanted to go from point A to point B using a tunnel through the sea. Would you take use concrete
-                        to make the tunnel or would it be more prudent to use a PVC pipe through the water?
-                    </p>
-                    <i class="material-icons" title="View answers" onclick="displayComments('answers3')"> forum </i>
-                    <span>2</span>
-                    <span class="add" title="Answer this question" onclick="showAddComment('add3')">&#xff0b;</span>
-                    <span class="hide_answers" id="hide3" title="Hide Answers" onclick="hideAddComment('answers3'), hideAddComment('hide3')">X</span>
-                    <span class="date">22:16:09 12<sup>th</sup>-July-2018</span>
-                    <span class="date_small">13:00 <br> 04-08-18</span>
-
-                    <div class="add_comment_card" id="add3">
-                        <input type="text" placeholder="Answer this question ..."><br><br>
-                        <input type="button" value="Add" onclick="hideAddComment('add3')">
-                        <button onclick="hideAddComment('add3')" title="Cancel" >X</button>
-                    </div>
-
-                    <div class="answers" id="answers3">
-                        <div class="answer_card">
-                            <h4><u>@jay</u></h4>
-                            <p>
-                                No. Wouldn't you rather just take a ship across the sea? That sounds way more reasonable.
-                            </p>
-                            <span class="votes">&#8607;</span>
-                            <span>4</span>
-                            <span class="votes">&#8609;</span>
-                            <span>7</span>
-                        </div>
-                
-                        <div class="answer_card">
-                            <h4><u>@karen</u></h4>
-                            <p>
-                                You could just not do that
-                            </p>
-                            <span class="votes">&#8607;</span>
-                            <span>0</span>
-                            <span class="votes">&#8609;</span>
-                            <span>0</span>
-                        </div>
-                    </div>
-                </div>
-
+                <h3 class="h3" id="recent" title="Show questions with most answers?" onclick="showQs('most_answers')">Most Recent Questions:</h3>
+                <h3 class="h3" id="most_answers" title="Show most recent questions?" onclick="showQs('recent')">Questions with most answers:</h3>
+                <a href="search.html" class="h3" id="search" title="search for a question?"><span> &#128269; Search</span></a>
+                <div id="questions"></div>
             </div>
-
+            <div id="pages_footer">
+                <span id="prev_page" class="pages" onclick="navigate('prev')">PREV</span>
+                <span class="pages active" id="curr_page">1</span>
+                <span id="next_page" class="pages" onclick="navigate('next')">NEXT</span>
+            </div>
+            <script src="../js/fetchData.js"></script>
         </body>
     </html>
