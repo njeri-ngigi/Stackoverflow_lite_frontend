@@ -36,7 +36,7 @@ document.getElementById('username').innerHTML = `@${username}`;
 const divUserQuestions = document.getElementById('userQuestions');
 const divUserAnswers = document.getElementById('userAnswers');
 const questionCount = document.getElementById('question_count');
-const urlSeg = "http://localhost:5000/api/v1/";
+const urlSeg = "https://my-stackoverflow-lite-api.herokuapp.com/api/v1/";
 let url = urlSeg + 'users/questions';
 let count = 1;
 

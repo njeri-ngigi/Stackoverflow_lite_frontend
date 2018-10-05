@@ -12,10 +12,11 @@ const display = (divId) => {
 const el = id => document.getElementById(id)
 const getEl = id => el(id).value;
 const showAlert = message => setTimeout(function() { alert(message); }, 30);
+const urlSeg = "https://my-stackoverflow-lite-api.herokuapp.com/api/v1/";
 
 let status = '';
 const login = (username, password) => {
-  let url = 'http://localhost:5000/api/v1/auth/login';
+  let url = urlSeg + 'auth/login';
   fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -27,7 +28,6 @@ const login = (username, password) => {
     })
     .then((data) => {
       if (status === 200) {
-        console.log("Heyyo!")
         window.location.replace('./home.html');
         let token = data.token;
         if (typeof (Storage) !== 'undefined') {
@@ -52,7 +52,7 @@ const signup = () => {
   let email = getEl('email');
   let password = getEl('password');
   let confirmPassword = getEl('confirm_password');
-  let url = 'http://localhost:5000/api/v1/auth/signup';
+  let url = urlSeg + 'auth/signup';
   let myData = {
     name: name, 
     username: username, 

@@ -26,7 +26,7 @@ if (myToken === undefined || myToken === null || myToken === '') {
 const uName = localStorage.getItem("username");
 const divMain = document.getElementById("questions");
 const token = "Bearer " + myToken;
-const urlSeg = "http://localhost:5000/api/v1/";
+const urlSeg = "https://my-stackoverflow-lite-api.herokuapp.com/api/v1/";
 let url = urlSeg + "questions?pages=1";
 let firstCountAns = 1;
 let status = '';

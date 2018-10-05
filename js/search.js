@@ -4,14 +4,13 @@ const append = (parent, el) => { return parent.appendChild(el); }
 const closeTab = () => window.location.replace("./home.html");
 
 const searchDiv = document.getElementById('search_body')
-const urlSeg = "http://localhost:5000/api/v1/";
+const urlSeg = "https://my-stackoverflow-lite-api.herokuapp.com/api/v1/";
 const searchUrl = urlSeg + "questions/search?limit=20";
 
 let status = '';
 
 const search = (mycontent) => {
   mydata = {content: mycontent}
-  console.log(mydata)
   searchDiv.innerHTML = '';
   fetch(searchUrl, {
     method: 'POST',
@@ -23,10 +22,7 @@ const search = (mycontent) => {
       return response.json()
     })
     .then((data)=>{
-      console.log(data);
-      console.log(data.length);
       if (data.id) {
-        console.log("This is me")
         fetchSingleQuestion(data.id);
         return;
       }
@@ -68,9 +64,7 @@ const fetchSingleQuestion = (questionId) => {
       const qDiv = createNode('div');
       qDiv.classList.add('question_card');
       qDiv.innerHTML = html;
-      console.log("Hey");
       const answers = data.answers;
-      console.log(answers)
       answers.map((answer) => {
         const ansDiv = createNode('div');
         ansDiv.classList.add('answer_card');
