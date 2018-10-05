@@ -72,7 +72,7 @@
     color: 	#FF4500;
 }
 #top_question{
-    margin-top: 130px;
+    margin-top: 150px;
 }
 .material-icons, .votes, .add, .editIcon, .accepted{
     font-size: 30px;
@@ -141,7 +141,7 @@ i:hover, .votes:hover, .add:hover, .editIcon:hover, .delete:hover {
     color: green;
     cursor: pointer;
 }
-#loginH3, .editForm, .delete, .editIcon{
+#loginH3, .editForm, .delete, .editIcon, #prev_page{
     display: none;
 }
 .delete{
@@ -182,7 +182,6 @@ i:hover, .votes:hover, .add:hover, .editIcon:hover, .delete:hover {
 #searchMain{
     padding-top: 50px;
 }
-
 #close{
     float: right;
     text-align: center;
@@ -195,7 +194,8 @@ i:hover, .votes:hover, .add:hover, .editIcon:hover, .delete:hover {
 }
 .links{
     font-size: 1.1em;
-    padding: 5%;
+    padding: 1%;
+    padding-left: 4%;
     transition: 0.2s ease;
     text-decoration: underline;
 }
@@ -205,4 +205,8 @@ i:hover, .votes:hover, .add:hover, .editIcon:hover, .delete:hover {
     transition: 0.1s ease;
     text-decoration: none;
     cursor: pointer;
+}
+
+#closestMatch{
+    padding-left: 2%;
 }

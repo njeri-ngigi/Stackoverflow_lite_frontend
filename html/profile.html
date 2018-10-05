@@ -21,25 +21,16 @@
                     <div class="profile_name">
                         <div id="profileDetails">
                             <h3 id="username"></h3>
-                            <h3 onclick="showPostQuestion('postQuestion')"><u>Post a Question?</u></h3>
-                        </div>
-                        <div id="postQuestion">
-                            <form>
-                                <input id="qTitle" type="text" placeholder="Question Title"><br><br>
-                                <textarea id="qContent" placeholder="Question Content"></textarea><br><br>
-                                <input type="button" value="Post Question" onclick="postQuestions('postQuestion'), showPostQuestion('profileDetails')">
-                                <button onclick="showPostQuestion('profileDetails')" title="Cancel">X</button>
-                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="stats_card">
-                    <div class="Q_card Q_left" onclick="showQuestionCards('userQuestions')" >
+                    <div class="Q_card lightOrange" id="Q_left" onclick="showQuestionCards('userQuestions')" >
                         <h3 id="question_count"></h3>
                         <p>Questions</p>
                     </div>
                     
-                    <div class="Q_card" onclick="showQuestionCards('userAnswers')">
+                    <div class="Q_card" id="Q_right" onclick="showQuestionCards('userAnswers')">
                         <h3 id="answer_count"></h3>
                         <p>Answers</p>
                     </div>

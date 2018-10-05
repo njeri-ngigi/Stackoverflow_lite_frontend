@@ -1,41 +1,34 @@
-function showPostQuestion(divId) {
-  if (divId === 'postQuestion') {
-    document.getElementById('postQuestion').style.display = 'block';
-    document.getElementById('profileDetails').style.display = 'none';
-  }
-  if (divId === 'profileDetails') {
-    document.getElementById('postQuestion').style.display = 'none';
-    document.getElementById('profileDetails').style.display = 'block';
-  }  
+const profileDetailsDiv = document.getElementById('profileDetails')
+
+const active = (elAdd, elRemove) => {
+  document.getElementById(elAdd).classList.add('lightOrange');
+  document.getElementById(elRemove).classList.remove('lightOrange');
 }
 
-function showQuestionCards(divId) {
+const showQuestionCards = (divId) => {
   if (divId === 'userQuestions') {
     document.getElementById('userQuestions').style.display = 'block';
     document.getElementById('userAnswers').style.display = 'none';
+    active('Q_left', 'Q_right');
   }
   if (divId === 'userAnswers') {
     document.getElementById('userQuestions').style.display = 'none';
     document.getElementById('userAnswers').style.display = 'block';
+    active('Q_right', 'Q_left');
   }
 }
-const reload = () => window.location.reload();
 
-function createNode(element) {
-  return document.createElement(element);
+const addError = (data, errorId) => {
+  const errorDiv = document.getElementById(errorId);
+  errorDiv.style.display = 'block';
+  errorDiv.innerHTML = data.message;
 }
-function append(parent, el) {
-  return parent.appendChild(el);
-}
-function hide(el) {
-  document.getElementById(el).style.display = "none";
-}
-function showBlock(el) {
-  document.getElementById(el).style.display = "block";
-}
-function showInline(el) {
-  document.getElementById(el).style.display = "inline";
-}
+const reload = () => window.location.reload();
+const createNode = element => document.createElement(element);
+const append = (parent, el) => parent.appendChild(el);
+const hide = el => document.getElementById(el).style.display = "none";
+const showBlock = el => document.getElementById(el).style.display = "block";
+const showInline = el => document.getElementById(el).style.display = "inline";
 
 const username = localStorage.getItem('username');
 document.getElementById('username').innerHTML = `@${username}`;
@@ -56,6 +49,7 @@ const showHideAns = (hideId, answersGiven) => {
 }
 let token = localStorage.getItem('token');
 token = "Bearer " + token;
+let statu = ''
 
 // fetch user questions
 fetch(url, {
@@ -135,39 +129,36 @@ fetch(url, {
       const allAnswers = question.answers;
       let count21 = 1;
       allAnswers.map((answer) => {
+        const errorId = 'error' + count21;
         const contentId = 'content' + count21;
         const editSpanId = 'editSpan' + count21;
         const editFormId = 'editForm' + count21;
         const editInputId = 'editInput' + count21;
         const editButtonId = 'editButton' + count21;
+        const acceptedId = 'accepted' + count21;
         const answerDiv = createNode('div');
         answerDiv.classList.add('answer_card');
         const ansDivHtml = `
-              <h4><u>@${answer.username}</u></h4>
+              <h4><u>@${answer.username}</u><span title="Accepted answer" class="accept accepted_answer" id="${acceptedId}">&#10003;</span></h4>
               <p id=${contentId}>${answer.content}</p>
-              <span class="votes" title="upvote">&#8607;</span>
+              <span class="votes" title="upvotes">&#8607;</span>
               <span>${answer.upvotes}</span>
-              <span class="votes" title="downvote">&#8609;</span>
+              <span class="votes" title="downvotes">&#8609;</span>
               <span>${answer.downvotes}</span>
               <span id="${editSpanId}" onclick="showBlock('${editFormId}')" class="editIcon" title="Edit answer?">&#9998;</span>
               <div class="editForm" id=${editFormId}>
-                <textarea id=${editInputId} type="text">${answer.content}</textarea><br><br>
-                <input id=${editButtonId} type="button" value="Update" onclick="editAnswer('${question.id}', '${answer.id}', '${editInputId}', '${contentId}', '${editFormId}')">
+                <textarea id=${editInputId} type="text" placeholder="Enter content...">${answer.content}</textarea><br><br>
+                <input id=${editButtonId} type="button" value="Update" onclick="editAnswer('${question.id}', '${answer.id}', '${editInputId}', '${contentId}', '${editFormId}', '${errorId}')">
                 <button title="Cancel" onclick="hide('${editFormId}')" type="reset">X</button>
+                <div class="error" id=${errorId}></div>
                 </div>`;
         answerDiv.innerHTML = ansDivHtml;
         append(userAnsDiv, answerDiv);
         if (answer.accepted) {
-          const acceptSpan = createNode('span');
-          acceptSpan.innerHTML = '&#10003;';
-          acceptSpan.setAttribute('title', 'Accepted answer')
-          acceptSpan.classList.add('accept');
-          acceptSpan.classList.add('accepted_answer');
-          append(answerDiv, acceptSpan);
+          showInline(acceptedId)
         }
         count21 += 1;
       })
-      
       count2 += 1;
     });
   })
@@ -221,40 +212,6 @@ const deleteQst = (qid, childId) => {
       })
       .catch(error => console.log(error))
   }
-};
-
-const postQuestions = (divId) => {
-  const title = getEl('qTitle');
-  const content = getEl('qContent');
-  url = urlSeg + 'questions/';
-  const myData = {
-    title: title,
-    content: content
-  }
-  postStuff(url, myData, divId);
-}
-let status = ''
-const postStuff = (myUrl, myData, divId) => {
-  fetch(myUrl, {
-    method: 'POST',
-    headers: { 
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
-    body: JSON.stringify(myData)
-  })
-    .then((response) =>{
-      status = response.status;
-      return response.json();
-    })
-    .then((data) => {
-      showAlert(data.message);
-      if (status === 201) {
-        hide(divId);
-        reload();
-      }
-    })
-    .catch(error => console.log(error))
 };
 
 const acceptAnswer = (questionId, answerId, answerDivId, myCount) => {
@@ -334,7 +291,7 @@ const logout = () => {
     .catch(error => console.log(error))
 }
 
-const editAnswer = (questionId, answerId, editInputId, divId, editFormId) => {
+const editAnswer = (questionId, answerId, editInputId, divId, editFormId, errorId) => {
   const content = getEl(editInputId)
   url = urlSeg + 'questions/' + questionId + '/answers/' + answerId;
   fetch(url, {
@@ -345,10 +302,18 @@ const editAnswer = (questionId, answerId, editInputId, divId, editFormId) => {
     },
     body: JSON.stringify({ content: content })
   })
-    .then(response => response.json())
+    .then((response) => {
+      status = response.status
+      return response.json()
+    })
     .then((data) => {
-      document.getElementById(divId).innerHTML = content;
-      hide(editFormId);
+      if (status === 200) {
+        document.getElementById(divId).innerHTML = content;
+        hide(editFormId);
+      } else{
+        addError(data, errorId)
+      }
+      
     })
     .catch(error => console.log(error))
 }

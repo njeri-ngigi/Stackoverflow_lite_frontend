@@ -24,17 +24,18 @@
                         <textarea id="contentQst" placeholder="Question Content"></textarea><br><br>
                         <input id="postQuestionBtn" type="button" value="Post Question" title="Post Question" onclick="postQuestions('postQuestion')">
                         <button type="reset" onclick="hide('postQuestion')" title="Cancel">X</button>
+                        <div class="error" id="q_error"></div>
                     </div>
                 </div>
                 <h3 class="h3" id="recent" title="Show questions with most answers?" onclick="showQs('most_answers')">Most Recent Questions:</h3>
                 <h3 class="h3" id="most_answers" title="Show most recent questions?" onclick="showQs('recent')">Questions with most answers:</h3>
-                <a href="search.html" class="h3" id="search"><span  >Search</span></a>
+                <a href="search.html" class="h3" id="search" title="search for a question?"><span> &#128269; Search</span></a>
                 <div id="questions"></div>
             </div>
             <div id="pages_footer">
-                <span class="pages" onclick="navigate('prev')">PREV</span>
+                <span id="prev_page" class="pages" onclick="navigate('prev')">PREV</span>
                 <span class="pages active" id="curr_page">1</span>
-                <span class="pages" onclick="navigate('next')">NEXT</span>
+                <span id="next_page" class="pages" onclick="navigate('next')">NEXT</span>
             </div>
             <script src="../js/fetchData.js"></script>
         </body>

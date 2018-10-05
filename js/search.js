@@ -1,47 +1,56 @@
 const getEl = id => document.getElementById(id).value;
 const createNode = element => document.createElement(element);
-
+const append = (parent, el) => { return parent.appendChild(el); }
+const closeTab = () => window.location.replace("./home.html");
 
 const searchDiv = document.getElementById('search_body')
 const urlSeg = "http://localhost:5000/api/v1/";
 const searchUrl = urlSeg + "questions/search?limit=20";
 
-const append = (parent, el) => { return parent.appendChild(el); }
-const close = () => window.location.replace("./home.html");
+let status = '';
 
-const search = (mydata) => {
+const search = (mycontent) => {
+  mydata = {content: mycontent}
+  console.log(mydata)
   searchDiv.innerHTML = '';
-  const searchTitle = getEl('search_title');
-  console.log(mydata);
   fetch(searchUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify(mydata),
   })
-    .then(response => response.json())
+    .then((response) => {
+      status = response.status;
+      return response.json()
+    })
     .then((data)=>{
       console.log(data);
+      console.log(data.length);
       if (data.id) {
         console.log("This is me")
         fetchSingleQuestion(data.id);
+        return;
       }
       else if (data.length === 0) {
-        const emptyHtml = `<p class="empty" id="first_empty">Sorry, we didn't find any matches</p><p class="empty">Sad face emoji</p>`;
+        const emptyHtml = `<p class="empty" id="first_empty">Sorry, we didn't find any matches</p><p class="empty">&#x2639;</p>`;
         searchDiv.innerHTML = emptyHtml;
+        return;
       }
       else {
+        const h4 = createNode('h4');
+        h4.setAttribute('id', 'closestMatch')
+        append(searchDiv, h4);
+        h4.innerHTML = 'Closest matches:'
         for (let i=0; i<data.length; i++) {
-          const p = createNode('p');
-          p.innerHTML = data[i];
-          p.classList.add('links');
-          p.setAttribute('title', 'Is this what your looking for?')
-          append(searchDiv, p);
-          p.onclick = search({ content: data[i] });
+          const searchHTML = `<p class="links" onclick="search('${data[i]}')" title="Is this what your looking for?">${data[i]}</p>`
+          const div = createNode('div');
+          div.innerHTML = searchHTML;
+          append(searchDiv, div)
         }
       }
     })
     .catch(error => console.log(error))
 }
+const searchQuestion = () => search(getEl('search_title'));
 
 const fetchSingleQuestion = (questionId) => {
   const url = urlSeg + 'questions/' + questionId;
@@ -89,5 +98,3 @@ const fetchSingleQuestion = (questionId) => {
     })
     .catch(error => console.log(error));
 };
-document.getElementById('search_title').addEventListener('input', search(getEl('search_title')));
-document.getElementById('search_button').addEventListener('button', search(getEl('search_title')));
