@@ -20,6 +20,7 @@ const addError = (data, errorId) => {
 const myToken = localStorage.getItem('token');
 if (myToken === undefined || myToken === null || myToken === '') {
   hide('profileH3');
+  hide('postQ');
   showBlock('loginH3');
 } 
 
