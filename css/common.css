@@ -16,7 +16,7 @@ body{
 	right: -40px;
 	bottom: -40px;
 	width: auto;
-	height: 20%;
+	height: 140px;
 	background-image: url(../images/signup_bg.jpg);
 	background-size: cover;
 	-webkit-filter: blur(2px);
@@ -39,7 +39,7 @@ body{
 }
 .header{
 	position: absolute;
-	top: calc(50% - 300px);
+	top: calc(50% - 380px);
     left: calc(50% - 160px);
     font-family: 'Exo', sans-serif;
     z-index: 2;
@@ -58,7 +58,7 @@ body{
 		font-family: 'Exo', sans-serif; 
 		font-weight: 400
 	}
-.header h3 a:hover{
+.header h3 span:hover{
     cursor: pointer;
     opacity: 0.9;
 }
@@ -68,5 +68,19 @@ h3 a{
 }
 h3 span{
     float: right;
-    font-size: 0.9em;
+	font-size: 0.9em;
+}
+
+.error{
+    background-color: lightpink;
+	color: white;
+	padding: 1%;
+	width: 220px;
+	font-size: 1.1em;
+	border: 1px solid white;
+	opacity: 0.8;
+	font-weight: 700;
+	font-family: Exo;
+	display: none;
+    text-align: center;
 }
