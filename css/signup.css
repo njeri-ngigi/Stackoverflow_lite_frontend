@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
 @media (max-width: 700px){
 	.header div{
@@ -18,7 +18,6 @@
 	.main p{
 		margin-left: 15px;
 	}
-	
 }
 body{
 	margin: 0;
@@ -60,7 +59,7 @@ body{
 	height: auto;
 	background-image: url(../images/signup_bg.jpg);
 	background-size: cover;
-	-webkit-filter: blur(5px);
+	-webkit-filter: blur(6px);
 	z-index: 0;
 }
 
@@ -76,12 +75,14 @@ body{
 	z-index: 1;
 	opacity: 0.7;
 }
-
 .header{
 	position: absolute;
-	top: calc(50% - 200px);
+	top: calc(50% - 250px);
 	left: calc(50% - 180px);
 	z-index: 2;
+}
+#login{
+	margin-top: calc(50% - 140px);
 }
 .header div{
 	float: left;
@@ -89,6 +90,13 @@ body{
 	font-family: 'Exo', sans-serif;
 	font-weight: 200;
 	font-size: 250%;
+	cursor: pointer;
+}
+.header h4{
+    font-family: 'Exo', sans-serif;
+	font-weight: 400;
+	font-size: 1.6em;
+	text-align: center;
 }
 #header_small{
 	color: yellow !important;
@@ -96,7 +104,7 @@ body{
 
 .main{
 	position: absolute;
-	top: calc(50% - 150px);
+	top: calc(50% - 180px);
 	left: calc(50% - 150px);
 	height: 150px;
 	width: 350px;
@@ -169,4 +177,18 @@ body{
     font-family: Exo;
     font-weight: 200;
     font-size: 14px;
+}
+
+#signup_error, #login_error {
+	background-color: lightpink;
+	color: white;
+	padding: 5%;
+	width: 220px;
+	font-size: 1.1em;
+	border: 1px solid white;
+	opacity: 0.8;
+	font-weight: 700;
+	font-family: Exo;
+	display: none;
+	text-align: center;
 }

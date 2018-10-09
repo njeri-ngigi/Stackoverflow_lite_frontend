@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
 @media (max-width: 700px){
 	.main div{
@@ -8,55 +8,79 @@
     .answer_card div{
         margin-top: 20px;
     }
-    .date{
-        display: none;
-    }
-    .date_small{
-        display: block;
-        float: right;
-        font-size: 0.7em;
-        font-weight: 400;
-    }
 }
 @media (max-width: 400px){
-    .date_small{
-        display: none;
-    }
     .header div{
         font-size: 0.5em;
     }
 }
-@media (min-width: 700px){
-    .date_small{
-        display: none;
-    }
+.h3{
+    margin-left: 13%;
+    padding: 1%;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: 0.5s ease;
 }
-.question_card{
-    box-shadow: 1px 1px 3px grey;
+.h3:hover{
+    color: #FF4500;
+    opacity: 0.9;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: 0.5s ease;
+}
+#most_answers{
+    display: none;
+}
+#search{
+    text-decoration: none;
+    color: black;
+}
+.question_card, #pages_footer{
     height: auto;
     padding: 1.5%;
     width: 70%;
     margin-top: 20px;
     margin-left: 13%;
 }
-.question_card h2, .question_card h4{
+#pages_footer{
+    margin-left: 17%;
+    margin-top: 40px;
+}
+.question_card{
+    box-shadow: 1px 1px 3px grey;
+}
+.pages:hover, #close:hover{
+    background-color: lavender;
+    cursor: pointer;
+}
+.active{
+    color: 	#FF4500;
+    background-color: beige;
+    opacity: 0.9;
+}
+.question_card h2, .question_card h4, #title_h3{
     color:black;
     font-family: Exo;
     font-weight: 400;
+    transition: 0.1s ease;
 }
-.question_card h2:hover, .question_card h4:hover{
+
+#h2Header:hover{
     cursor: pointer;
+    opacity: 0.9;
+    transition: 0.1s ease;
+    color: 	#FF4500;
 }
 #top_question{
-    margin-top: 130px;
+    margin-top: 150px;
 }
-.material-icons, .votes, .add{
+.material-icons, .votes, .add, .editIcon, .accepted{
     font-size: 30px;
     margin-left: 20px;
     padding: 10px;
 }
 
-.answer_card, .comment_card, .add_comment_card{
+.answer_card, .comment_card, .add_comment_card, .editProfile{
     box-shadow: 1px 1px 3px grey;
     padding: 1%;
     margin: 2%;
@@ -103,14 +127,9 @@ button:hover{
 .answers, .add_comment_card, #postQuestion{
     display: none;
 }
-i:hover, .votes:hover, .add:hover{
+i:hover, .votes:hover, .add:hover, .editIcon:hover, .delete:hover {
     cursor: pointer;
     opacity: 0.7;
-}
-.date{
-    float: right;
-    font-size: 0.7em;
-    font-weight: 400;
 }
 .hide_answers{
     padding: 10px;
@@ -118,7 +137,76 @@ i:hover, .votes:hover, .add:hover{
     display: none;
     font-size: 1.5em;
 }
-.hide_answers:hover{
+.hide_answers:hover, .editIcon:hover{
     color: green;
     cursor: pointer;
+}
+#loginH3, .editForm, .delete, .editIcon, #prev_page{
+    display: none;
+}
+.delete{
+    color: red;
+    font-size: 1.5em;
+    margin-left: 10px;
+    padding: 10px;
+
+}
+.pages{
+    border: 1px solid gray;
+    padding: 3%;
+    margin-right: 2%;
+}
+.accepted{
+    color: green;
+    display: none;
+}
+.emptyDiv, .empty{
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+}
+.emptyDiv, #first_empty{
+    padding-top: 10%;
+        
+}
+.emptyDiv{
+    height: 25%;
+}
+#search_title{
+    width: 50%;
+}
+#search_button{
+    width: 100px;
+    transition: 0.5s ease;
+}
+#searchMain{
+    padding-top: 50px;
+}
+#close{
+    float: right;
+    text-align: center;
+    width: 70px;
+    height: auto;
+    border-radius: 5%;
+    color: darkorange;
+    border: 1px solid darkorange;
+    margin-right: 50px;
+}
+.links{
+    font-size: 1.1em;
+    padding: 1%;
+    padding-left: 4%;
+    transition: 0.2s ease;
+    text-decoration: underline;
+}
+.links:hover{
+    color: darkorange;
+    opacity: 0.9;
+    transition: 0.1s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#closestMatch{
+    padding-left: 2%;
 }
