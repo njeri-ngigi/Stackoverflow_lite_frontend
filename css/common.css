@@ -39,7 +39,7 @@ body{
 }
 .header{
 	position: absolute;
-	top: calc(50% - 380px);
+	margin-top: -120px;
     left: calc(50% - 160px);
     font-family: 'Exo', sans-serif;
     z-index: 2;
